@@ -33,12 +33,8 @@ public class ManagerDAOImp implements ManagerDAO {
 			ps.setString(4, emp.getLastName());
 			
 			if(ps.executeUpdate() == 1) {
-				System.out.println("You have successfully created an employee account!");
-				
 				success = true;
-			} else {
-				System.out.println("Failed to create an employee account! Please contact our customer representitive for more information.");
-			}
+			} 
 
 		} catch (SQLException e) {
 			
@@ -60,11 +56,8 @@ public class ManagerDAOImp implements ManagerDAO {
 			ps.setInt(1, employeeID);
 			
 			if(ps.executeUpdate() == 1) {
-				System.out.println("You have successfully deleted an employee account!");
 				success = true;
-			} else {
-				System.out.println("The employee ID does not exist, please enter another item ID.");
-			}
+			} 
 				
 		} catch (SQLException e) {
 			e.printStackTrace();

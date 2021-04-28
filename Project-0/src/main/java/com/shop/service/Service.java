@@ -9,7 +9,10 @@ import com.shop.model.Employee;
 import com.shop.model.Item;
 import com.shop.model.Manager;
 import com.shop.model.Offer;
+import com.shop.model.Payment;
 import com.shop.repository.CustomerDAOImp;
+import com.shop.repository.EmployeeDAOImp;
+import com.shop.repository.ManagerDAOImp;
 import com.shop.repository.UserDAOImp;
 
 public class Service {
@@ -17,53 +20,57 @@ public class Service {
 	Employee e;
 	Manager m;
 	
-	
 	UserDAOImp uDao = new UserDAOImp();
 	CustomerDAOImp cDao = new CustomerDAOImp();
+	EmployeeDAOImp eDao = new EmployeeDAOImp();
+	ManagerDAOImp mDao = new ManagerDAOImp();
 	
 	Scanner sc = new Scanner(System.in);
 	
-	public Customer setCustomer(String userName, String passWord) {
+	//return a verified customer object, 
+	public boolean verifyCustomer(String userName, String passWord) {
+		boolean pass = false;
 		
-		Customer c = new Customer();
 		c.setUserName(userName);
 		c.setPassWord(passWord);
 		
-		return c;
+		c = uDao.verifyCredential(c);
+		
+		if(c.getCustomerID() >= 1) {
+			pass = true;
+		}
+		
+		return pass;
 	}
 	
-	public Employee setEmployee(String userName, String passWord) {
+	public boolean verifyEmployee(String userName, String passWord) {
+		boolean pass = false;
 		
-		Employee e = new Employee();
 		e.setUserName(userName);
 		e.setPassWord(passWord);
 		
-		return e;
+		e = uDao.verifyCredential(e);
+		
+		if(e.getEmployeeID() >= 1) {
+			pass = true;
+		}
+		
+		return pass;
 	}
 	
-	public Manager setManager(String userName, String passWord) {
+	public boolean verifyManager(String userName, String passWord) {
+		boolean pass = false;
 		
-		return null;
+		m.setUserName(userName);
+		m.setPassWord(passWord);
 		
-	}
-	
-	//return a verified customer object, 
-	public Customer verifyCustomer(Customer c) {
+		//m = uDao.verifyCredential(m);
 		
-		return uDao.verifyCredential(c);
+		if(m.getManagerID() >= 1) {
+			pass = true;
+		}
 		
-	}
-	
-	public Employee verifyEmployee(Employee e) {
-		
-		return uDao.verifyCredential(e);
-		
-	}
-	
-	public Manager verifyManager(Manager m) {
-		
-		return null;
-		
+		return pass;
 	}
 	
 	public boolean register() {
@@ -117,6 +124,8 @@ public class Service {
 		
 	}
 	
+///////////////////////////////////////////Begin customer methods/////////////////////////////////////////
+	
 	public void viewAvalableItem() {
 		List<Item> items = new ArrayList<>();
 		items = cDao.viewAvailableItems();
@@ -126,9 +135,9 @@ public class Service {
 		}
 	}
 	
-	public void makeOffer(int customerID, int itemID, double offerAmount) {
+	public void makeOffer(int itemID, double offerAmount) {
 		boolean success;
-		Offer o = new Offer(customerID, itemID, offerAmount);
+		Offer o = new Offer(c.getCustomerID(), itemID, offerAmount);
 		
 		success = cDao.makeOffer(o);
 		
@@ -141,7 +150,116 @@ public class Service {
 	}
 	
 	public void viewOwned() {
+		List<Item> items = new ArrayList<>();
+		items = cDao.viewOwned(c);
 		
+		for(Item i : items) {
+			System.out.println(i);
+		}
+	}
+	
+	public void viewRemainPayments() {
+		List<Payment> payments = new ArrayList<>();
+		payments = cDao.viewRemainPayments(c);
+		
+		for(Payment p : payments) {
+			System.out.println(p);
+		}
+	}
+	
+	public void viewAllPayments() {
+		List<Payment> payments = new ArrayList<>();
+		payments = cDao.viewAllPayments(c);
+		
+		for(Payment p : payments) {
+			System.out.println(p);
+		}
+	}
+	
+	///////////////////////////////////////////Begin employee methods/////////////////////////////////////////
+	
+	public void addItem(String itemName, String itemDescription, Double minimumPrice) {
+		boolean success;
+		Item i = new Item(itemName, itemDescription, minimumPrice);
+		
+		success = eDao.addItem(i);
+		
+		if(success == true) {
+			System.out.println("You have successfully added an item!");
+		} else {
+			System.out.println("Failed to add an item! Please contact a tech representitive for more information.");
+		}
+	}
+	
+	public void offerAction(int offerID, String action) {
+		boolean success;
+		
+		success = eDao.offerAction(offerID, action);
+		
+		if(success == true) {
+			System.out.println("You have successfully accpted this offer, other offers for this item will automatically turn down.");
+		} else {
+			System.out.println("The offer ID does not exist or not in pending status, please enter another offer ID.");
+		}
+	}
+	
+	public void removeItem(int itemID) {
+		boolean success;
+		
+		success = eDao.removeItem(itemID);
+		
+		if(success == true) {
+			System.out.println("You have successfully deleted an item!");
+		} else {
+			System.out.println("The item ID does not exist or not in pending status, please enter another item ID.");
+		}
+	}
+	
+	public void empViewAllPayments() {
+		List<Payment> payments = new ArrayList<>();
+		payments = eDao.viewAllPayments();
+		
+		for(Payment p : payments) {
+			System.out.println(p);
+		}
+	}
+	
+	///////////////////////////////////////////Begin manager methods/////////////////////////////////////////
+	
+	public void makeEmployeeAccount(String userName, String passWord, String firstName, String lastName) {
+		boolean success;
+		e = new Employee (userName, passWord, firstName, lastName);
+		
+		success = mDao.makeEmployeeAccount(e);
+		
+		if(success == true) {
+			System.out.println("You have successfully created an employee account!");
+		} else {
+			System.out.println("Failed to create an employee account! Please contact a tech representitive for more information.");
+		}
+	}
+	
+	public void deleteEmployeeAccount(int employeeID) {
+		boolean success;
+		success = mDao.deleteEmployeeAccount(employeeID);
+		
+		if(success == true) {
+			System.out.println("You have successfully deleted an employee account!");
+		} else {
+			System.out.println("The employee ID does not exist, please enter another item ID.");
+		}
+	}
+	
+	public void viewSalesHistory() {
+		List<Payment> payments = new ArrayList<>();
+		payments = mDao.viewSalesHistory();
+		
+		for(Payment p : payments) {
+			System.out.println(p);
+		}
 	}
 	
 }
+
+
+

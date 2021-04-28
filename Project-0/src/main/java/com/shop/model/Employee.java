@@ -3,6 +3,14 @@ package com.shop.model;
 public class Employee extends User {
 
 	private int employeeID;
+	
+	//constructor for creating an employee account.
+	public Employee(String userName, String passWord, String firstName, String lastName) {
+		this.userName = userName;
+		this.passWord = passWord;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
 	public int getEmployeeID() {
 		return employeeID;

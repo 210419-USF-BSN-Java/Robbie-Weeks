@@ -21,6 +21,13 @@ public class Item {
 		this.itemOwnerID = itemOwnerID;
 	}
 	
+	//constructor for employee to add item.
+	public Item(String itemName, String itemDescription, Double minimumPrice) {
+		this.itemName = itemName;
+		this.itemDescription = itemDescription;
+		this.itermMinimumPrice = minimumPrice;
+	}
+
 	public int getItemID() {
 		return itemID;
 	}

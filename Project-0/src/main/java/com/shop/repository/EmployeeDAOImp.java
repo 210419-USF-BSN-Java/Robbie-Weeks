@@ -23,23 +23,19 @@ public class EmployeeDAOImp implements EmployeeDAO{
 		try(Connection conn = ShopUtilities.getConnection()){
 
 			//SQL statement to insert a new account into shop_customer table.
-			String addItem = "insert into shop_items (item_name, item_description, item_status, item_minimum_price, item_onwer_ID) values (?,?,?,?,?);";
+			String addItem = "insert into shop_items (item_name, item_description, item_status, item_minimum_price) values (?,?,?,?);";
 			ps = conn.prepareStatement(addItem);
 
 			//set the values
 			ps.setString(1, i.getItemName());
 			ps.setString(2, i.getItemDescription());
-			ps.setString(3, i.getItemStatus());
+			ps.setString(3, "Available");
 			ps.setDouble(4, i.getItermMinimumPrice());
-			ps.setInt(5, i.getItemOwnerID());
 			
 			if(ps.executeUpdate() == 1) {
-				System.out.println("You have successfully added an item!");
 				
 				success = true;
-			} else {
-				System.out.println("Failed to add an item! Please contact our customer representitive for more information.");
-			}
+			} 
 
 		} catch (SQLException e) {
 			
@@ -62,11 +58,8 @@ public class EmployeeDAOImp implements EmployeeDAO{
 			ps.setInt(2, offerID);
 			
 			if(ps.executeUpdate() == 1) {
-				System.out.println("You have successfully accpted the offer!");
 				success = true;
-			} else {
-				System.out.println("The offer ID does not exist or not in pending status, please enter another offer ID.");
-			}
+			} 
 				
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,11 +79,8 @@ public class EmployeeDAOImp implements EmployeeDAO{
 			ps.setInt(1, itemID);
 			
 			if(ps.executeUpdate() == 1) {
-				System.out.println("You have successfully deleted an item!");
 				success = true;
-			} else {
-				System.out.println("The item ID does not exist or not in pending status, please enter another item ID.");
-			}
+			} 
 				
 		} catch (SQLException e) {
 			e.printStackTrace();
