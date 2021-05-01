@@ -8,12 +8,26 @@ public class Offer {
 	private double offerAmount;
 	private String offerStatus;
 	
+	public Offer(){
+		
+	}
+	
 	//constructor for makeOffer method
 	public Offer(int customerID, int itemID, double offerAmount) {
 		this.customerID = customerID;
 		this.itemID = itemID;
 		this.offerAmount = offerAmount;
 	}
+	
+	public Offer(int offerID, int customerID, int itemID, double offerAmount, String offerStatus) {
+		super();
+		this.offerID = offerID;
+		this.customerID = customerID;
+		this.itemID = itemID;
+		this.offerAmount = offerAmount;
+		this.offerStatus = offerStatus;
+	}
+
 	public int getOfferID() {
 		return offerID;
 	}
@@ -39,5 +53,20 @@ public class Offer {
 		this.offerStatus = offerStatus;
 	}
 
+	public int getItemID() {
+		return itemID;
+	}
+
+	public void setItemID(int itemID) {
+		this.itemID = itemID;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [offerID=" + offerID + ", customerID=" + customerID + ", itemID=" + itemID + ", offerAmount="
+				+ offerAmount + ", offerStatus=" + offerStatus + "]";
+	}
+	
+	
 }
 

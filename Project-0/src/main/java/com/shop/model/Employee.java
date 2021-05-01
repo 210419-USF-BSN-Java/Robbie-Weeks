@@ -4,12 +4,13 @@ public class Employee extends User {
 
 	private int employeeID;
 	
+	public Employee() {
+		
+	}
+	
 	//constructor for creating an employee account.
 	public Employee(String userName, String passWord, String firstName, String lastName) {
-		this.userName = userName;
-		this.passWord = passWord;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		super(userName, passWord, firstName, lastName);
 	}
 
 	public int getEmployeeID() {

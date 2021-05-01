@@ -9,7 +9,7 @@ public class Item {
 	private double itermMinimumPrice;
 	private int itemOwnerID;
 	
-	//
+	//all-arg constructor
 	public Item(int itemID, String itemName, String itemDescription, String itemStatus, double itermMinimumPrice,
 			int itemOwnerID) {
 		super();
@@ -23,6 +23,14 @@ public class Item {
 	
 	//constructor for employee to add item.
 	public Item(String itemName, String itemDescription, Double minimumPrice) {
+		this.itemName = itemName;
+		this.itemDescription = itemDescription;
+		this.itermMinimumPrice = minimumPrice;
+	}
+	
+	//constructor for employee to edit item.
+	public Item(int itemID, String itemName, String itemDescription, Double minimumPrice) {
+		this.itemID = itemID;
 		this.itemName = itemName;
 		this.itemDescription = itemDescription;
 		this.itermMinimumPrice = minimumPrice;
@@ -63,6 +71,13 @@ public class Item {
 	}
 	public void setItemOwnerID(int itemOwnerID) {
 		this.itemOwnerID = itemOwnerID;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [itemID=" + itemID + ", itemName=" + itemName + ", itemDescription=" + itemDescription
+				+ ", itemStatus=" + itemStatus + ", itermMinimumPrice=" + itermMinimumPrice + ", itemOwnerID="
+				+ itemOwnerID + "]";
 	}
 	
 	

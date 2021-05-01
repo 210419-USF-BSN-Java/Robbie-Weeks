@@ -16,12 +16,8 @@ public interface CustomerDAO {
 	public boolean makeOffer(Offer o);
 	
 	//show all items the customer owned.
-	public List<Item> viewOwned(Customer c);
+	public List<Item> viewOwned(int userID);
 	
-	//show remaining payments for an item.
-	public List<Payment> viewRemainPayments(Customer c);
-	
-	//Show all payments.
-	public List<Payment> viewAllPayments(Customer c);
-	
+	//show all offers the customer made.
+	public List<Offer> viewOffers(int userID);
 }

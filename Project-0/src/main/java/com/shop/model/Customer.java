@@ -8,6 +8,11 @@ public class Customer extends User {
 		super();
 	}
 	
+	public Customer(String userName, String passWord) {
+		this.userName = userName;
+		this.passWord = passWord;
+	}
+	
 	public Customer(String firstName, String lastName, String userName, String passWord) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -29,8 +34,5 @@ public class Customer extends User {
 		super.toString();
 		return "Customer [customerID=" + customerID + "]";
 	}
-
-	
-	
 	
 }

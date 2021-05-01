@@ -9,40 +9,42 @@ import java.util.Set;
 
 import com.shop.model.Customer;
 import com.shop.model.Employee;
+import com.shop.model.User;
 import com.shop.util.ShopUtilities;
 
 
 
 public class UserDAOImp implements UserDAO{
-
-	public Customer verifyCredential(Customer c) {
+	
+	@Override
+	public User verifyCredential(User u) {
 		
-		//Check if the user's credential matches in the customer database
+		//Check if the user's credential matches in the database record.
 		try(Connection conn = ShopUtilities.getConnection()){
 			
-			
-			//select user_id if the credential exist in database
-			String sql = "SELECT customer_id, customer_first_name, customer_last_name FROM shop_customer_account where customer_username = ? and customer_password = ?";
+			//select user information from database if the credential matches the record.
+			String sql = "SELECT user_id, first_name, last_name, user_type FROM shop_user where user_name = ? and user_password = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			//set user's login credential to verify
-			ps.setString(1, c.getUserName());
-			ps.setString(2, c.getPassWord());
+			ps.setString(1, u.getUserName());
+			ps.setString(2, u.getPassWord());
 
 
 			//add result into resultset 
 			ResultSet rs = ps.executeQuery();
 
-			//pass the customer information from resultset to customer object c.
+			//pass the user information from resultset to an User object.
 			if(rs != null) {
 				while(rs.next()) { 
-					c.setCustomerID(rs.getInt("customer_id"));
-					c.setFirstName(rs.getString("customer_first_name"));
-					c.setLastName(rs.getString("customer_last_name"));
+					u.setUserID(rs.getInt("user_id"));
+					u.setFirstName(rs.getString("first_name"));
+					u.setLastName(rs.getString("last_name"));
+					u.setUserType(rs.getString("user_type"));
 				} 
-			} else {
-				System.out.println("Invalid credential.");
-			}
+			} //else {
+				//System.out.println("Invalid credential.");
+			//}
 
 
 		} catch (SQLException e) {
@@ -50,83 +52,46 @@ public class UserDAOImp implements UserDAO{
 			e.printStackTrace();
 		}
 		
-		return c;
+		return u;
 		
 	}
 	
-	public Employee verifyCredential(Employee emp) {
-		
-		//Check if the user's credential matches in the employee database.
-		try(Connection conn = ShopUtilities.getConnection()){
-			
-			
-			//select user_id if the credential exist in database
-			String sql = "SELECT employee_id, employee_first_name, employee_last_name FROM shop_customer_account where customer_username = ? and customer_password = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-
-			//set user's login credential to verify
-			ps.setString(1, emp.getUserName());
-			ps.setString(2, emp.getPassWord());
-
-
-			//add result into resultset 
-			ResultSet rs = ps.executeQuery();
-
-			//pass the customer information from resultset to customer object c.
-			if(rs != null) {
-				while(rs.next()) { 
-					emp.setEmployeeID(rs.getInt("employee_id"));
-					emp.setFirstName(rs.getString("employee_first_name"));
-					emp.setLastName(rs.getString("employee_last_name"));
-				} 
-			} else {
-				System.out.println("Invalid credential.");
-			}
-
-
-		} catch (SQLException e) {
-		
-			e.printStackTrace();
-		}
-		
-		return emp;
-		
-	}
-
+	@Override
 	public boolean checkUserName(String userName) {
 		
 		// create a list of existing usernames.
-				Set<String> userNames = new HashSet<>();  
+		Set<String> userNames = new HashSet<>();  
 
 
-				//Check if application's username is already existed in database
-				try(Connection conn = ShopUtilities.getConnection()){
+		//Check if application's username is already existed in database
+		try(Connection conn = ShopUtilities.getConnection()){
 
-					//
-					String sql = "SELECT user_username FROM shop_customer_account";
-					PreparedStatement ps = conn.prepareStatement(sql);
+			//select all existing usernames.
+			String sql = "SELECT user_name FROM shop_user";
+			PreparedStatement ps = conn.prepareStatement(sql);
 
-					//add all usernames into resultset 
-					ResultSet rs = ps.executeQuery();
+			//add all usernames into resultset 
+			ResultSet rs = ps.executeQuery();
 
-					//pass all username from resultset to userNames List
-					while(rs.next()) { 
-						userNames.add(rs.getString("user_username"));
-					}
+			//pass all username from resultset to userNames List
+			while(rs.next()) { 
+				userNames.add(rs.getString("user_name"));
+			}
 
-				} catch (SQLException e) {
+		} catch (SQLException e) {
 					
-					e.printStackTrace();
-				}
+			e.printStackTrace();
+		}
 
-				if(userNames.contains(userName)) {
-					return true;
-				} else {
-					return false;
-				}
+		if(userNames.contains(userName)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-
-	public boolean registUserAccount(Customer c) {
+	
+	@Override
+	public boolean registUserAccount(User u, String userType) {
 		
 		boolean success = false;
 		
@@ -134,21 +99,22 @@ public class UserDAOImp implements UserDAO{
 		
 		try(Connection conn = ShopUtilities.getConnection()){
 			
-			//SQL statement to insert a new customer into shop_customer_account table.
-			String regist = "insert into shop_customer_account (customer_username, customer_password, first_name, last_name) values (?,?,?,?);";
+			//SQL statement to insert a new user record into shop_user table.
+			String regist = "insert into shop_user (user_name, user_password, first_name, last_name, user_type) values (?,?,?,?,?);";
 			ps = conn.prepareStatement(regist);
 			
 			//set the values
-			ps.setString(1, c.getUserName());
-			ps.setString(2, c.getPassWord());
-			ps.setString(3, c.getFirstName());
-			ps.setString(4, c.getLastName());
+			ps.setString(1, u.getUserName());
+			ps.setString(2, u.getPassWord());
+			ps.setString(3, u.getFirstName());
+			ps.setString(4, u.getLastName());
+			ps.setString(5, userType);
 			
 			//check if the sql statement effect the database.
 			if(ps.executeUpdate() == 1) {
 				success = true;
 			} else {
-				System.out.println("Failed to register an account! Please contact our customer representitive for more information.");
+				System.out.println("Failed to register an account! Please contact our tech representitive for more information.");
 			}
 		} catch (SQLException e) {
 			

@@ -10,70 +10,48 @@ import com.shop.model.Item;
 import com.shop.model.Manager;
 import com.shop.model.Offer;
 import com.shop.model.Payment;
+import com.shop.model.User;
 import com.shop.repository.CustomerDAOImp;
 import com.shop.repository.EmployeeDAOImp;
 import com.shop.repository.ManagerDAOImp;
+import com.shop.repository.PaymentDAOImp;
 import com.shop.repository.UserDAOImp;
 
 public class Service {
 	Customer c;
 	Employee e;
 	Manager m;
+	User u;
 	
 	UserDAOImp uDao = new UserDAOImp();
 	CustomerDAOImp cDao = new CustomerDAOImp();
 	EmployeeDAOImp eDao = new EmployeeDAOImp();
 	ManagerDAOImp mDao = new ManagerDAOImp();
+	PaymentDAOImp pDao = new PaymentDAOImp();
 	
 	Scanner sc = new Scanner(System.in);
 	
-	//return a verified customer object, 
-	public boolean verifyCustomer(String userName, String passWord) {
-		boolean pass = false;
+	//return a verified user object, 
+	public String verifyCredential(String userName, String passWord) {
+		u = new User (userName,passWord);
 		
-		c.setUserName(userName);
-		c.setPassWord(passWord);
+		u.setUserName(userName);
+		u.setPassWord(passWord);
 		
-		c = uDao.verifyCredential(c);
+		//uDao.verifyCredential() method returns a User object.
+		//It has user ID if the credential matches the database record.
+		u = uDao.verifyCredential(u);
 		
-		if(c.getCustomerID() >= 1) {
-			pass = true;
+		//check if the returned user object has userID.
+		if(u.getUserID() > 0) {
+			System.out.println("Hi " + u.getFirstName() + " what would you like to do:");
 		}
 		
-		return pass;
+		return u.getUserType();
 	}
 	
-	public boolean verifyEmployee(String userName, String passWord) {
-		boolean pass = false;
-		
-		e.setUserName(userName);
-		e.setPassWord(passWord);
-		
-		e = uDao.verifyCredential(e);
-		
-		if(e.getEmployeeID() >= 1) {
-			pass = true;
-		}
-		
-		return pass;
-	}
-	
-	public boolean verifyManager(String userName, String passWord) {
-		boolean pass = false;
-		
-		m.setUserName(userName);
-		m.setPassWord(passWord);
-		
-		//m = uDao.verifyCredential(m);
-		
-		if(m.getManagerID() >= 1) {
-			pass = true;
-		}
-		
-		return pass;
-	}
-	
-	public boolean register() {
+	//Fulfill an new user object's fields and call DAO method to create a record in database.
+	public boolean register(String userType) {
 		boolean exist;
 		String userName;
 		String passWord;
@@ -97,35 +75,39 @@ public class Service {
 			exist = uDao.checkUserName(userName);
 		} 
 		
-		//
+		//do-while loop prevent if the user accidently hit enter without an input.
 		do {
-			System.out.println("Pleas enter your password:");
+			System.out.println("Pleas enter password:");
 			passWord = sc.nextLine();
 			
 		} while(passWord.length() < 1);
 		
+		//do-while loop prevent if the user accidently hit enter without an input.
 		do {
-			System.out.println("Pleas enter your first name:");
+			System.out.println("Pleas enter first name:");
 			firstName = sc.nextLine();
 			
 		} while(firstName.length() < 1);
 		
+		//do-while loop prevent if the user accidently hit enter without an input.
 		do {
-			System.out.println("Pleas enter your last name:");
+			System.out.println("Pleas enter last name:");
 			lastName = sc.nextLine();
 			
 		} while(lastName.length() < 1);
 		
-		Customer c = new Customer(firstName,lastName,userName,passWord);
+		User u = new User(userName,passWord,firstName,lastName);
 		
-		boolean success = uDao.registUserAccount(c);
+		//uDao.registUserAccount() returns the success result of creating user record in database.
+		boolean success = uDao.registUserAccount(u, userType);
 		
 		return success;
 		
 	}
 	
-///////////////////////////////////////////Begin customer methods/////////////////////////////////////////
+///////////////////////////////////////////Begin customer service/////////////////////////////////////////
 	
+	//call DAO method to create an available item list, then print the elements from returned list object.
 	public void viewAvalableItem() {
 		List<Item> items = new ArrayList<>();
 		items = cDao.viewAvailableItems();
@@ -135,10 +117,12 @@ public class Service {
 		}
 	}
 	
+	//call DAO method to create an offer record into database then print the result of execution.
 	public void makeOffer(int itemID, double offerAmount) {
 		boolean success;
-		Offer o = new Offer(c.getCustomerID(), itemID, offerAmount);
+		Offer o = new Offer(u.getUserID(), itemID, offerAmount);
 		
+		//cDao.makeOffer() returns the execution result of SQL create statement.
 		success = cDao.makeOffer(o);
 		
 		if(success == true) {
@@ -149,35 +133,53 @@ public class Service {
 		
 	}
 	
+	//call DAO method to create an offer list, then print the returned offer list.
+	public void viewOffers() {
+		List<Offer> offers = new ArrayList<>();
+		
+		//cDao.viewOffers() returns the offer list from databse
+		offers = cDao.viewOffers(u.getUserID());
+		
+		for(Offer o : offers) {
+			System.out.println(o);
+		}
+	}
+	
+	//call DAO method to create an item list that shows all owned items of this customer ID, then print them.
 	public void viewOwned() {
 		List<Item> items = new ArrayList<>();
-		items = cDao.viewOwned(c);
+		
+		items = cDao.viewOwned(u.getUserID());
 		
 		for(Item i : items) {
 			System.out.println(i);
 		}
 	}
 	
+	//call DAO method to create an payment list that has all incomplete payments, then print.
 	public void viewRemainPayments() {
 		List<Payment> payments = new ArrayList<>();
-		payments = cDao.viewRemainPayments(c);
+		
+		payments = pDao.viewRemainPayments(u);
 		
 		for(Payment p : payments) {
 			System.out.println(p);
 		}
 	}
 	
+	////call DAO method to create an payment list that has all completed and incomplete payments, then print.
 	public void viewAllPayments() {
 		List<Payment> payments = new ArrayList<>();
-		payments = cDao.viewAllPayments(c);
+		payments = pDao.viewAllPayments(u);
 		
 		for(Payment p : payments) {
 			System.out.println(p);
 		}
 	}
 	
-	///////////////////////////////////////////Begin employee methods/////////////////////////////////////////
+	///////////////////////////////////////////Begin employee service/////////////////////////////////////////
 	
+	//fulfill a new item object and call DAO method to create an item record in databse.
 	public void addItem(String itemName, String itemDescription, Double minimumPrice) {
 		boolean success;
 		Item i = new Item(itemName, itemDescription, minimumPrice);
@@ -191,6 +193,21 @@ public class Service {
 		}
 	}
 	
+	//fulfull a item object and call DAO method to replace an existing item record in database.
+	public void editItem(int itemID, String itemName, String itemDescription, double minimumPrice) {
+		boolean success;
+		Item i = new Item(itemID, itemName, itemDescription, minimumPrice);
+		
+		success = eDao.editItem(i);
+		
+		if(success == true) {
+			System.out.println("You have successfully edited this item!");
+		} else {
+			System.out.println("Failed to edit this item! Please contact a tech representitive for more information.");
+		}
+	}
+	
+	//call DAO method with offer ID and the action to this offer.
 	public void offerAction(int offerID, String action) {
 		boolean success;
 		
@@ -203,6 +220,16 @@ public class Service {
 		}
 	}
 	
+	//call viewPending() method to create an offer list that all the offer status is "Pending", then print the elements.
+	public void viewPending() {
+		List<Offer> pending = eDao.viewPending();
+		
+		for(Offer o : pending) {
+			System.out.println(o);
+		}
+	}
+	
+	//call DAO method to remove an item record from databse.
 	public void removeItem(int itemID) {
 		boolean success;
 		
@@ -215,6 +242,7 @@ public class Service {
 		}
 	}
 	
+	//method for the employee to view all payments history that has all payment records of all users.
 	public void empViewAllPayments() {
 		List<Payment> payments = new ArrayList<>();
 		payments = eDao.viewAllPayments();
@@ -224,23 +252,12 @@ public class Service {
 		}
 	}
 	
-	///////////////////////////////////////////Begin manager methods/////////////////////////////////////////
+	///////////////////////////////////////////Begin manager service/////////////////////////////////////////
 	
-	public void makeEmployeeAccount(String userName, String passWord, String firstName, String lastName) {
-		boolean success;
-		e = new Employee (userName, passWord, firstName, lastName);
-		
-		success = mDao.makeEmployeeAccount(e);
-		
-		if(success == true) {
-			System.out.println("You have successfully created an employee account!");
-		} else {
-			System.out.println("Failed to create an employee account! Please contact a tech representitive for more information.");
-		}
-	}
-	
+	//call DAO method to delete an employee user record.
 	public void deleteEmployeeAccount(int employeeID) {
 		boolean success;
+		
 		success = mDao.deleteEmployeeAccount(employeeID);
 		
 		if(success == true) {
@@ -250,12 +267,24 @@ public class Service {
 		}
 	}
 	
+	//call DAO method to create an offer list that has all offers and their status.
 	public void viewSalesHistory() {
 		List<Payment> payments = new ArrayList<>();
 		payments = mDao.viewSalesHistory();
 		
 		for(Payment p : payments) {
 			System.out.println(p);
+		}
+	}
+	
+	//call DAO method to view all employee users.
+	public void viewEmployee() {
+		String user = "Employee";
+		
+		List<User> employees = mDao.viewUsers(user);
+		
+		for(User u : employees) {
+			System.out.println(u);
 		}
 	}
 	

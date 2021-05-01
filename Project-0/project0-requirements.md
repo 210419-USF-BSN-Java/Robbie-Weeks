@@ -33,7 +33,7 @@ Total Points: 25 Points
 	* 2 points
 * As the system, I update an item to an owned state when an offer is accepted.(done)
 	* 2 points
-* As the system, I reject all other pending offers for an item when an offer is accepted. (done) Need another customerDAO methods for customer to see their offers' status. (pending, accepted, rejected)
+* As the system, I reject all other pending offers for an item when an offer is accepted.(done)
 	* 3 points
 * As a user, I can register for a customer account.(done)
 	* 3 points
@@ -45,7 +45,7 @@ Total Points: 25 Points
 	* 1 point
 * As an employee, I can view all payments.(done)
 	* 1 point
-* As the system, I can calculate the weekly payment.(weekly payment of paid payments, unpaid payments, or total payments? and which user can see it(customer, employee, manager))(or is it a loan for 52 weeks?)
+* As the system, I can calculate the weekly payment.(done)
 	* 1 point
 
 ## Bonus
@@ -54,12 +54,12 @@ Total Points: 25 Points
 * As a manager, I can make employee accounts. (done)
 * As an employee, I can edit existing items. (done)
 * As a manager, I can fire employees. (done)
-* As a manager, I can view sales history of all offers.(log of all accepted offer) (done)
+* As a manager, I can view sales history of all offers.(log off all offers and its final status) (done)
 
 ## Extra bonus
 
 Be creative and incorporate other topics into your project, they do not have to have been covered by our curriculum. Some suggestions:
-* File I/O()
-* Threading
+* File I/O(?)
+* Threading(counting time)
 * Mocking(mojito for unit test)
 * Password hashing(Salt)
