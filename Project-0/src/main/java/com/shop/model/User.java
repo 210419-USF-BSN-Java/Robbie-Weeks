@@ -7,7 +7,6 @@ public class User {
 	protected String passWord;
 	protected String firstName;
 	protected String lastName;
-	//need setter and getter
 	protected String userType;
 	
 	public User() {

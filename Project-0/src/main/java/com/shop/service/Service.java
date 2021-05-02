@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.shop.model.Customer;
-import com.shop.model.Employee;
 import com.shop.model.Item;
-import com.shop.model.Manager;
 import com.shop.model.Offer;
 import com.shop.model.Payment;
 import com.shop.model.User;
@@ -18,9 +15,7 @@ import com.shop.repository.PaymentDAOImp;
 import com.shop.repository.UserDAOImp;
 
 public class Service {
-	Customer c;
-	Employee e;
-	Manager m;
+
 	User u;
 	
 	UserDAOImp uDao = new UserDAOImp();
@@ -34,9 +29,6 @@ public class Service {
 	//return a verified user object, 
 	public String verifyCredential(String userName, String passWord) {
 		u = new User (userName,passWord);
-		
-		u.setUserName(userName);
-		u.setPassWord(passWord);
 		
 		//uDao.verifyCredential() method returns a User object.
 		//It has user ID if the credential matches the database record.

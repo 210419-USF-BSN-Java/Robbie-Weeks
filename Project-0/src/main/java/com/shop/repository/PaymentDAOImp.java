@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.shop.model.Customer;
 import com.shop.model.Payment;
 import com.shop.model.User;
 import com.shop.util.ShopUtilities;

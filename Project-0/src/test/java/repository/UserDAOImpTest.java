@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import com.shop.model.Customer;
 import com.shop.repository.UserDAOImp;
 
 public class UserDAOImpTest {

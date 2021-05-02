@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.shop.model.Employee;
-import com.shop.model.Item;
 import com.shop.model.Payment;
 import com.shop.model.User;
 import com.shop.util.ShopUtilities;

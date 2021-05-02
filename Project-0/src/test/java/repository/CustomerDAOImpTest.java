@@ -1,54 +1,56 @@
 package repository;
 
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-import org.junit.*;
+import org.junit.Test;
 
-import com.shop.model.Customer;
 import com.shop.model.Offer;
+import com.shop.model.User;
 import com.shop.repository.CustomerDAOImp;
+import com.shop.repository.PaymentDAOImp;
 
 public class CustomerDAOImpTest {
 	
 	CustomerDAOImp cDao = new CustomerDAOImp();
+	PaymentDAOImp pDao = new PaymentDAOImp();
 	
 	
-//	@Test
-//	public void testViewAvailableItems() {
-//		
-//		assert(cDao.viewAvailableItems()) != null;
-//		
-//	}//passed
-//	
-//	@Test
-//	public void testMakeOffer() {
-//		Offer o = new Offer(5, 11, 50.00);
-//		
-//		assertTrue(cDao.makeOffer(o));
-//	}//passed
-//	
-	//@Test
-//	public void testViewOwned() {
-//		Customer c = new Customer();
-//		c.setCustomerID(1);
-//		
-//		assert(cDao.viewOwned(c)) != null;
-//	}//passed
-//	
-//	@Test
-//	public void testViewRemainPayments() {
-//		Customer c = new Customer();
-//		c.setCustomerID(1);
-//		
-//		assert(cDao.viewRemainPayments(c)) != null;
-//	}//passed
-//	
-//	@Test
-//	public void testViewAllPayments() {
-//		Customer c = new Customer();
-//		c.setCustomerID(1);
-//		
-//		assert(cDao.viewAllPayments(c)) != null;
-//	}//passed
+	@Test
+	public void testViewAvailableItems() {
+		
+		assert(cDao.viewAvailableItems()) != null;
+		
+	}//passed
+	
+	@Test
+	public void testMakeOffer() {
+		Offer o = new Offer(5, 11, 50.00);
+		
+		assertTrue(cDao.makeOffer(o));
+	}//passed
+	
+	@Test
+	public void testViewOwned() {
+		User u = new User();
+		u.setUserID(1);
+		
+		assert(cDao.viewOwned(u.getUserID())) != null;
+	}//passed
+	
+	@Test
+	public void testViewRemainPayments() {
+		User u = new User();
+		u.setUserID(1);
+		
+		assert(pDao.viewRemainPayments(u)) != null;
+	}//passed
+	
+	@Test
+	public void testViewAllPayments() {
+		User u = new User();
+		u.setUserID(1);
+		
+		assert(pDao.viewAllPayments(u)) != null;
+	}//passed
 }

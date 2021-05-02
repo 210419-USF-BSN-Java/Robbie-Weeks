@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.shop.model.Customer;
-import com.shop.model.Employee;
 import com.shop.model.User;
 import com.shop.util.ShopUtilities;
 

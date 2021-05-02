@@ -7,10 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.shop.model.Customer;
 import com.shop.model.Item;
 import com.shop.model.Offer;
-import com.shop.model.Payment;
 import com.shop.util.ShopUtilities;
 
 public class CustomerDAOImp implements CustomerDAO{

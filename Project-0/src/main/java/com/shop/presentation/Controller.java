@@ -2,10 +2,6 @@ package com.shop.presentation;
 
 import java.util.Scanner;
 
-import com.shop.model.Customer;
-import com.shop.model.Employee;
-import com.shop.model.Manager;
-import com.shop.model.User;
 import com.shop.service.Service;
 
 public class Controller {
