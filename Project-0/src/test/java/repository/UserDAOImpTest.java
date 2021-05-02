@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
+import com.shop.model.User;
 import com.shop.repository.UserDAOImp;
 
 public class UserDAOImpTest {
@@ -13,24 +14,24 @@ public class UserDAOImpTest {
 	@Test
 	public void testCheckUserName() {
 		
-		assertFalse(uDao.checkUserName("rob1"));
+		assertTrue(uDao.checkUserName("rob1"));
 		
 	}//passed
 	
-//	@Test
-//	public void testRegistUserAccount() {
-//		Customer c = new Customer("rob1", "wee", "Robbie", "Weeks");
-//		
-//		assertTrue(uDao.registUserAccount(u));
-//		
-//	}//passed
-//	
-//	@Test
-//	public void testVerifyCredential() {
-//		Customer c = new Customer("rob1", "wee");
-//		
-//		assertNotNull(uDao.verifyCredential(c));
-//		
-//	}//passed
+	@Test
+	public void testRegistUserAccount() {
+		User u = new User("rob1", "wee", "Robbie", "Weeks");
+		
+		assertTrue(uDao.registUserAccount(u,"Customer"));
+		
+	}//passed
+	
+	@Test
+	public void testVerifyCredential() {
+		User u = new User("rob1", "wee");
+		
+		assertNotNull(uDao.verifyCredential(u));
+		
+	}//passed
 	
 }
