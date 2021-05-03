@@ -42,6 +42,26 @@ public class Service {
 		return u.getUserType();
 	}
 	
+	//Verify hashed password
+	public String verifyCredential2(String userName, String passWord) {
+		u = new User (userName,passWord);
+		
+		String[] hashAndSalt = uDao.getHashAndSalt(u);
+		
+		//call veryfyHashedPass() with password input, hashed password, and user salt.
+		boolean verifyResult = Salt.verifyHashedPass(passWord, hashAndSalt[0], hashAndSalt[1]);
+		
+		if(verifyResult == true) {
+			//get user info.
+			u = uDao.verifyCredential(u);
+			
+			return u.getUserType();
+		} else {
+			return null;
+		}
+
+	}
+	
 	//Fulfill an new user object's fields and call DAO method to create a record in database.
 	public boolean register(String userType) {
 		boolean exist;
@@ -88,7 +108,11 @@ public class Service {
 			
 		} while(lastName.length() < 1);
 		
-		User u = new User(userName,passWord,firstName,lastName);
+		//create salt with password and return a String array with 1) hashed password. 2) the salt generated for this password.
+		String[] hashAndSalt = Salt.saltHashing(passWord);
+		
+		//create an User object with username, hashed password, firstname, lastname, and salt.
+		User u = new User(userName,hashAndSalt[0],firstName,lastName, hashAndSalt[1]);
 		
 		//uDao.registUserAccount() returns the success result of creating user record in database.
 		boolean success = uDao.registUserAccount(u, userType);

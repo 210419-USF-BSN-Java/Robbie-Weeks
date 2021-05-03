@@ -4,22 +4,6 @@ public class Customer extends User {
 	
 	private int customerID;
 	
-	public Customer() {
-		super();
-	}
-	
-	public Customer(String userName, String passWord) {
-		this.userName = userName;
-		this.passWord = passWord;
-	}
-	
-	public Customer(String firstName, String lastName, String userName, String passWord) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userName = userName;
-		this.passWord = passWord;
-		
-	}
 
 	public int getCustomerID() {
 		return customerID;

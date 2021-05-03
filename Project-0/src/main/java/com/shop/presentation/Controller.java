@@ -57,7 +57,7 @@ public class Controller {
 		String passWord = sc.nextLine();
 				
 		//call veryfy method to match the login credential with database.
-		String userType = s.verifyCredential(userName, passWord);
+		String userType = s.verifyCredential2(userName, passWord);
 		if(userType == null) {
 			System.out.println("Your login credential does not match the database record, please try again!");
 			mainMenu();

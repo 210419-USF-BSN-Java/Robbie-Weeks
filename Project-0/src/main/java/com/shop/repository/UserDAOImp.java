@@ -10,9 +10,37 @@ import java.util.Set;
 import com.shop.model.User;
 import com.shop.util.ShopUtilities;
 
-
-
 public class UserDAOImp implements UserDAO{
+	
+	public String[] getHashAndSalt(User u) {
+		String[] hashAndSalt = new String[2];
+		
+		try(Connection conn = ShopUtilities.getConnection()){
+			
+			String getHash = "SELECT user_hashedpass, user_salt FROM shop_user WHERE user_name = ?";
+			PreparedStatement ps = conn.prepareStatement(getHash);
+			
+			//set user's login credential to verify
+			ps.setString(1, u.getUserName());
+			
+			//add result into Resultset.
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs != null) {
+				while (rs.next()) {
+					//first index stores the hashed password, second index stores the user salt.
+					hashAndSalt[0] = rs.getString("user_hashedpass");
+					hashAndSalt[1] = rs.getString("user_salt");
+				}
+			}
+
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		
+		return hashAndSalt;
+	}
 	
 	@Override
 	public User verifyCredential(User u) {
@@ -21,13 +49,11 @@ public class UserDAOImp implements UserDAO{
 		try(Connection conn = ShopUtilities.getConnection()){
 			
 			//select user information from database if the credential matches the record.
-			String sql = "SELECT user_id, first_name, last_name, user_type FROM shop_user where user_name = ? and user_password = ?";
+			String sql = "SELECT user_id, first_name, last_name, user_type FROM shop_user where user_name = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			//set user's login credential to verify
 			ps.setString(1, u.getUserName());
-			ps.setString(2, u.getPassWord());
-
 
 			//add result into resultset 
 			ResultSet rs = ps.executeQuery();
@@ -98,7 +124,7 @@ public class UserDAOImp implements UserDAO{
 		try(Connection conn = ShopUtilities.getConnection()){
 			
 			//SQL statement to insert a new user record into shop_user table.
-			String regist = "insert into shop_user (user_name, user_password, first_name, last_name, user_type) values (?,?,?,?,?);";
+			String regist = "insert into shop_user (user_name, user_hashedpass, first_name, last_name, user_salt, user_type) values (?,?,?,?,?,?);";
 			ps = conn.prepareStatement(regist);
 			
 			//set the values
@@ -106,7 +132,9 @@ public class UserDAOImp implements UserDAO{
 			ps.setString(2, u.getPassWord());
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
-			ps.setString(5, userType);
+			ps.setString(5, u.getSalt());
+			ps.setString(6, userType);
+			
 			
 			//check if the sql statement effect the database.
 			if(ps.executeUpdate() == 1) {

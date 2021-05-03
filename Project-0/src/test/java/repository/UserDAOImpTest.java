@@ -18,13 +18,13 @@ public class UserDAOImpTest {
 		
 	}//passed
 	
-	@Test
-	public void testRegistUserAccount() {
-		User u = new User("rob1", "wee", "Robbie", "Weeks");
-		
-		assertTrue(uDao.registUserAccount(u,"Customer"));
-		
-	}//passed
+//	@Test
+//	public void testRegistUserAccount() {
+//		User u = new User("rob1", "wee", "Robbie", "Weeks");
+//		
+//		assertTrue(uDao.registUserAccount(u,"Customer"));
+//		
+//	}//passed
 	
 	@Test
 	public void testVerifyCredential() {

@@ -2,12 +2,13 @@ package com.shop.model;
 
 public class User {
 	
-	protected int userID;
-	protected String userName;
-	protected String passWord;
-	protected String firstName;
-	protected String lastName;
-	protected String userType;
+	private int userID;
+	private String userName;
+	private String passWord;
+	private String firstName;
+	private String lastName;
+	private String userType;
+	private String salt;
 	
 	public User() {
 		
@@ -29,12 +30,13 @@ public class User {
 		this.userType = userType;
 	}
 
-	public User(String userName, String passWord, String firstName, String lastName) {
+	public User(String userName, String passWord, String firstName, String lastName, String salt) {
 		super();
 		this.userName = userName;
 		this.passWord = passWord;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.salt = salt;
 	}
 	public int getUserID() {
 		return userID;
@@ -72,8 +74,13 @@ public class User {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-	
-	
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", userName=" + userName + ", passWord=" + passWord + ", firstName="
