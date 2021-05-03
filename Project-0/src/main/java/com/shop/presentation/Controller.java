@@ -12,11 +12,13 @@ public class Controller {
 	////////////////////////////////Main menu///////////////////////////////////////
 	public void start() {
 		
+		
 		System.out.println("Hi! Welcome to Jashop online shopping system, what would you like to do:");
 		mainMenu();
 	}
 	
 	public void mainMenu() {
+		//loginTimer();
 		
 		System.out.println("1. Login.");
 		System.out.println("2. Regist for a customer account.");		
@@ -270,5 +272,10 @@ public class Controller {
 		//reset all objects and call main menu.
 		s = new Service();
 		start();
+	}
+	
+	public void loginTimer() {
+		//some kind threading class that counts 5 min.
+		logOut();
 	}
 }
