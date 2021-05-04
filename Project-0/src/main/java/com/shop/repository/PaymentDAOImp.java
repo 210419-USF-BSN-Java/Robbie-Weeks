@@ -55,20 +55,19 @@ public class PaymentDAOImp implements PaymentDAO{
 		try(Connection conn = ShopUtilities.getConnection()){
 
 			//SQL to update remaining payment and terms column, reduce the remaining amount and terms.
-			String split = "UPDATE shop_payments SET (remaining_payment, remaining_terms)"
+			String pay = "UPDATE shop_payments SET (remaining_payment, remaining_terms)"
 					+ " = (remaining_payment - payment_amount/5, remaining_terms - 1)"
 					+ " WHERE remaining_terms > 0;";
-			ps = conn.prepareStatement(split);
+			ps = conn.prepareStatement(pay);
 		
-			if(ps.executeUpdate() == 1) {
-				
-				success = true;
-			} 
+			ps.executeUpdate();
 			
 			//SQL to update payment status when the payment is complete(after the weekly payment is made).
 			String complete = "UPDATE shop_payments SET payment_status = 'Complete' WHERE remaining_payment = 0;";
 			ps = conn.prepareStatement(complete);
 			ps.executeUpdate();
+			
+			success = true;
 
 		} catch (SQLException e) {
 			

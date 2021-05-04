@@ -39,7 +39,7 @@ public class CustomerDAOImp implements CustomerDAO{
 						));
 			}
 
-
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -69,9 +69,7 @@ public class CustomerDAOImp implements CustomerDAO{
 			ps.setInt(4, o.getItemID());
 			
 			if(ps.executeUpdate() == 1) {
-				
 				success = true;
-				
 			} 
 
 		} catch (SQLException e) {

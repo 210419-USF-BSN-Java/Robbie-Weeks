@@ -18,8 +18,20 @@ public class EmployeeDAOImpTest {
 	}//passed
 	
 	@Test
-	public void testOfferAction() {
+	public void testEditItem() {
+		//test an exist item id
+		Item i = new Item(8, "Samsung", "Second hand", 500.0);
 		
+		assertTrue(eDao.editItem(i));
+		
+		//test to edit a non-exist item ID.
+		i.setItemID(999999);
+		assertFalse(eDao.editItem(i));
+	}
+	
+	@Test
+	public void testOfferAction() {
+		//test to accept an offer
 		assertTrue(eDao.offerAction(1, "accept"));
 		
 	}//passed
@@ -27,7 +39,7 @@ public class EmployeeDAOImpTest {
 	@Test
 	public void testRemoveItem() {
 		
-		assertTrue(eDao.removeItem(1));
+		assertFalse(eDao.removeItem(1));
 		
 	}//passed
 	

@@ -18,7 +18,7 @@ public class CustomerDAOImpTest {
 	
 	@Test
 	public void testViewAvailableItems() {
-		
+		//if the the sql executed correctly, viewAvailableItems() will return a List object
 		assert(cDao.viewAvailableItems()) != null;
 		
 	}//passed
@@ -26,7 +26,7 @@ public class CustomerDAOImpTest {
 	@Test
 	public void testMakeOffer() {
 		Offer o = new Offer(5, 11, 50.00);
-		
+
 		assertTrue(cDao.makeOffer(o));
 	}//passed
 	

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.shop.model.Item;
 import com.shop.model.Offer;
 import com.shop.model.Payment;
@@ -20,9 +22,8 @@ import com.shop.repository.UserDAO;
 import com.shop.repository.UserDAOImp;
 
 public class Service {
-
+	Logger log = Logger.getLogger(Service.class);
 	User u;
-	
 	UserDAO uDao = new UserDAOImp();
 	CustomerDAO cDao = new CustomerDAOImp();
 	EmployeeDAO eDao = new EmployeeDAOImp();
@@ -43,7 +44,7 @@ public class Service {
 		if(verifyResult == true) {
 			//get user info.
 			u = uDao.getUserInfo(userName);
-			
+			log.info("The user ID: " + u.getUserID() + " has loged in as : " + u.getUserType() + " .");
 			return u.getUserType();
 		} else {
 			return null;
@@ -106,6 +107,10 @@ public class Service {
 		//uDao.registUserAccount() returns the success result of creating user record in database.
 		boolean success = uDao.registUserAccount(u, userType);
 		
+		if(success == true) {
+			log.info("The user has registed a customer account with username: " + userName +  " .");
+		}
+		
 		return success;
 		
 	}
@@ -131,6 +136,7 @@ public class Service {
 		success = cDao.makeOffer(o);
 		
 		if(success == true) {
+			log.info("The customer ID: " + o.getCustomerID() + " made an offer on item ID: " + o.getItemID() + " for "+ o.getOfferAmount() + " dollars.");
 			System.out.println("You have successfully made an offer to this item!");
 		} else {
 			System.out.println("Failed to make an offer! Please contact our customer representitive for more information.");
@@ -192,6 +198,8 @@ public class Service {
 		success = eDao.addItem(i);
 		
 		if(success == true) {
+			log.info("The employee ID: " + u.getUserID() + " has added an item into database. Item name: " 
+					+ itemName + ", item description: "+ itemDescription + ", minimumPrice: " + minimumPrice + "dollars.");
 			System.out.println("You have successfully added an item!");
 		} else {
 			System.out.println("Failed to add an item! Please contact a tech representitive for more information.");
@@ -206,6 +214,8 @@ public class Service {
 		success = eDao.editItem(i);
 		
 		if(success == true) {
+			log.info("The employee ID: " + u.getUserID() + " has edited an item of database. Item id: " + itemID + ", item name: " + itemName 
+					+ ", item description: "+ itemDescription + ", minimumPrice: " + minimumPrice + "dollars.");
 			System.out.println("You have successfully edited this item!");
 		} else {
 			System.out.println("Failed to edit this item! Please contact a tech representitive for more information.");
@@ -219,6 +229,8 @@ public class Service {
 		success = eDao.offerAction(offerID, action);
 		
 		if(success == true) {
+			log.info("The employee ID: " + u.getUserID() + " has made an decision on offer id: " 
+					+ offerID + ", offer decision: "+ action + ".");
 			System.out.println("You have successfully accpted this offer, other offers for this item will automatically turn down.");
 		} else {
 			System.out.println("The offer ID does not exist or not in pending status, please enter another offer ID.");
@@ -241,6 +253,8 @@ public class Service {
 		success = eDao.removeItem(itemID);
 		
 		if(success == true) {
+			log.info("The employee ID: " + u.getUserID() + " has removed an item from databse. Item id: " 
+					+ itemID + ".");
 			System.out.println("You have successfully deleted an item!");
 		} else {
 			System.out.println("The item ID does not exist or not in pending status, please enter another item ID.");
@@ -266,6 +280,8 @@ public class Service {
 		success = mDao.deleteEmployeeAccount(employeeID);
 		
 		if(success == true) {
+			log.info("The manager ID: " + u.getUserID() + " has fired an employee and deleted the employee account from databse. Employee id: " 
+					+ employeeID + ".");
 			System.out.println("You have successfully deleted an employee account!");
 		} else {
 			System.out.println("The employee ID does not exist, please enter another item ID.");

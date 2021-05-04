@@ -1,0 +1,3 @@
+2021-05-04 00:16:07 INFO  Service:111 - The user has registed a customer account with username: rob40 .
+2021-05-04 00:16:12 INFO  Service:47 - The user ID: 21 has loged in as : Customer .
+2021-05-04 00:16:15 INFO  Service:139 - The customer ID: 21 made an offer on item ID: 4 for 1212.0 dollars.

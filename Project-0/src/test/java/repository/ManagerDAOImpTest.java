@@ -12,7 +12,7 @@ public class ManagerDAOImpTest {
 	
 //	@Test
 //	public void testMakeEmployeeAccount() {
-//		Employee e = new Employee("Rob1", "Wee", "Robbie", "Weeks");
+//		User u = new Employee("Rob1", "Wee", "Robbie", "Weeks");
 //		
 //		assertTrue(mDao.makeEmployeeAccount(e));
 //		
