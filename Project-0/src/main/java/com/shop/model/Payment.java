@@ -99,9 +99,9 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [paymentID=" + paymentID + ", customerID=" + customerID + ", itemID=" + itemID
-				+ ", paymentStatus=" + paymentStatus + ", paymentAmount=" + paymentAmount + ", remainPayment="
-				+ remainPayment + ", remainTerms=" + remainTerms + "]";
+		return "Payment [paymentID = " + paymentID + ", customerID = " + customerID + ", itemID = " + itemID
+				+ ", paymentStatus = " + paymentStatus + ", paymentAmount = " + paymentAmount + ", remainPayment = "
+				+ remainPayment + ", remainTerms = " + remainTerms + "]";
 	}
 	
 	

@@ -54,7 +54,7 @@ Total Points: 25 Points
 * As a manager, I can make employee accounts. (done)
 * As an employee, I can edit existing items. (done)
 * As a manager, I can fire employees. (done)
-* As a manager, I can view sales history of all offers.(log off all offers and its final status) (done)
+* As a manager, I can view sales history of all offers.(log off all accepted offers and its final status) (done)
 
 ## Extra bonus
 

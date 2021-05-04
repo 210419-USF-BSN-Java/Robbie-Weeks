@@ -114,7 +114,7 @@ public class EmployeeDAOImp implements EmployeeDAO{
 				PreparedStatement rejectOffer = conn.prepareStatement(reject);
 				
 				//SQL to change the ownership of item ID and customer ID.
-				String owner = "UPDATE shop_item SET item_owner_id = ? AND item_ status = 'Owned' WHERE item_id = ?;";
+				String owner = "UPDATE shop_item SET item_owner_id = ?, item_status = 'Owned' WHERE item_id = ?;";
 				PreparedStatement ownerChange = conn.prepareStatement(owner);
 				
 				while(rs.next()) {

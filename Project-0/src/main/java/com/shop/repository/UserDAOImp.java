@@ -43,8 +43,8 @@ public class UserDAOImp implements UserDAO{
 	}
 	
 	@Override
-	public User verifyCredential(User u) {
-		
+	public User getUserInfo(String userName) {
+		User u = new User();
 		//Check if the user's credential matches in the database record.
 		try(Connection conn = ShopUtilities.getConnection()){
 			
@@ -53,7 +53,7 @@ public class UserDAOImp implements UserDAO{
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			//set user's login credential to verify
-			ps.setString(1, u.getUserName());
+			ps.setString(1, userName);
 
 			//add result into resultset 
 			ResultSet rs = ps.executeQuery();

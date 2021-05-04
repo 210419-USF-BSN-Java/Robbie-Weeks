@@ -13,7 +13,7 @@ import com.shop.model.User;
 import com.shop.util.ShopUtilities;
 
 public class ManagerDAOImp implements ManagerDAO {
-
+	@Override
 	public boolean makeEmployeeAccount(Employee emp) {
 		
 		boolean success = false;
@@ -44,7 +44,8 @@ public class ManagerDAOImp implements ManagerDAO {
 		
 		return success;
 	}
-	
+
+	@Override
 	public List<User> viewUsers(String userType){
 		List<User> users = new ArrayList<>();
 		
@@ -76,7 +77,7 @@ public class ManagerDAOImp implements ManagerDAO {
 		
 		return users;
 	}
-
+	@Override
 	public boolean deleteEmployeeAccount(int employeeID) {
 		
 		boolean success = false;
@@ -97,7 +98,7 @@ public class ManagerDAOImp implements ManagerDAO {
 		
 		return success;
 	}
-
+	@Override
 	public List<Payment> viewSalesHistory() {
 		
 		List<Payment> payments = new ArrayList<>();

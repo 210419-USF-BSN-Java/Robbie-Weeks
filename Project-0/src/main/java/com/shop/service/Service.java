@@ -8,42 +8,31 @@ import com.shop.model.Item;
 import com.shop.model.Offer;
 import com.shop.model.Payment;
 import com.shop.model.User;
+import com.shop.repository.CustomerDAO;
 import com.shop.repository.CustomerDAOImp;
+import com.shop.repository.EmployeeDAO;
 import com.shop.repository.EmployeeDAOImp;
+import com.shop.repository.ManagerDAO;
 import com.shop.repository.ManagerDAOImp;
+import com.shop.repository.PaymentDAO;
 import com.shop.repository.PaymentDAOImp;
+import com.shop.repository.UserDAO;
 import com.shop.repository.UserDAOImp;
 
 public class Service {
 
 	User u;
 	
-	UserDAOImp uDao = new UserDAOImp();
-	CustomerDAOImp cDao = new CustomerDAOImp();
-	EmployeeDAOImp eDao = new EmployeeDAOImp();
-	ManagerDAOImp mDao = new ManagerDAOImp();
-	PaymentDAOImp pDao = new PaymentDAOImp();
+	UserDAO uDao = new UserDAOImp();
+	CustomerDAO cDao = new CustomerDAOImp();
+	EmployeeDAO eDao = new EmployeeDAOImp();
+	ManagerDAO mDao = new ManagerDAOImp();
+	PaymentDAO pDao = new PaymentDAOImp();
 	
 	Scanner sc = new Scanner(System.in);
 	
-	//return a verified user object, 
-	public String verifyCredential(String userName, String passWord) {
-		u = new User (userName,passWord);
-		
-		//uDao.verifyCredential() method returns a User object.
-		//It has user ID if the credential matches the database record.
-		u = uDao.verifyCredential(u);
-		
-		//check if the returned user object has userID.
-		if(u.getUserID() > 0) {
-			System.out.println("Hi " + u.getFirstName() + " what would you like to do:");
-		}
-		
-		return u.getUserType();
-	}
-	
 	//Verify hashed password
-	public String verifyCredential2(String userName, String passWord) {
+	public String verifyCredential(String userName, String passWord) {
 		u = new User (userName,passWord);
 		
 		String[] hashAndSalt = uDao.getHashAndSalt(u);
@@ -53,7 +42,7 @@ public class Service {
 		
 		if(verifyResult == true) {
 			//get user info.
-			u = uDao.verifyCredential(u);
+			u = uDao.getUserInfo(userName);
 			
 			return u.getUserType();
 		} else {

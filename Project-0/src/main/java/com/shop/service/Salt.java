@@ -32,7 +32,7 @@ public class Salt {
 			//convert each character in byte array into a String using StringBuilder append function.
 			StringBuilder build = new StringBuilder();
 			for(int i=0; i< hashedBytePass.length ;i++) {
-				build.append(Integer.toString(hashedBytePass[i]));         
+				build.append(Integer.toString((hashedBytePass[i] & 0xff) + 0x100, 16));        
 	        }
 			
 			//convert the StringBuilder type to String.
@@ -67,7 +67,7 @@ public class Salt {
 			//convert each character in byte array into a String using StringBuilder append function.
 			StringBuilder build = new StringBuilder();
 			for(int i=0; i< hashedBytePass.length ;i++) {
-				build.append(Integer.toString(hashedBytePass[i]));         
+				build.append(Integer.toString((hashedBytePass[i] & 0xff) + 0x100, 16));         
 	        }
 			
 			//convert the StringBuilder type to String.

@@ -75,10 +75,11 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [itemID=" + itemID + ", itemName=" + itemName + ", itemDescription=" + itemDescription
-				+ ", itemStatus=" + itemStatus + ", itermMinimumPrice=" + itermMinimumPrice + ", itemOwnerID="
-				+ itemOwnerID + "]";
+		return "Item [itemID = " + itemID + ", itemName = " + itemName + ", itemDescription = " + itemDescription
+				+ ", itemStatus = " + itemStatus + ", itermMinimumPrice = " + itermMinimumPrice + "]";
 	}
+
+	
 	
 	
 	

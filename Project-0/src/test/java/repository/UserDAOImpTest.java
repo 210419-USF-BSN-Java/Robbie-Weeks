@@ -30,7 +30,7 @@ public class UserDAOImpTest {
 	public void testVerifyCredential() {
 		User u = new User("rob1", "wee");
 		
-		assertNotNull(uDao.verifyCredential(u));
+		assertNotNull(uDao.getUserInfo("asdas"));
 		
 	}//passed
 	

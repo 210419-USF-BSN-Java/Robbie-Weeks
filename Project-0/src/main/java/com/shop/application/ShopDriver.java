@@ -4,8 +4,6 @@ import com.shop.presentation.Controller;
 
 public class ShopDriver {
 	 
-	
-	
 	public static void main(String[] args) {
 		
 		Controller c = new Controller();
@@ -13,8 +11,6 @@ public class ShopDriver {
 		//start.
 		c.start();
 
-		
 	}
 
 }
-

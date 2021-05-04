@@ -1,68 +1,77 @@
 package service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import com.shop.model.Item;
 import com.shop.model.User;
 import com.shop.repository.CustomerDAOImp;
-import com.shop.repository.UserDAOImp;
+import com.shop.repository.UserDAO;
 import com.shop.service.Service;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ServiceTest {
 	//Test all units with mockito methods.
 	
-	static Service s;
-	static User u;
+//	static Service s;
+//	static User u;
+//	@Mock
+//	UserDAOImp uDao;
+	@InjectMocks
+	Service s;
+	
 	@Mock
-	static UserDAOImp uDao;
+	UserDAO ud;
+	
 	@Mock
-	static CustomerDAOImp cDao;
+	CustomerDAOImp cDao;
 
 	
 	@BeforeClass
 	public static void setUp() {
-		s = new Service();
-		uDao = Mockito.mock(UserDAOImp.class);
-		u = new User(1,"rob","wee","Customer");
+//		s = new Service();
+//		uDao = Mockito.mock(UserDAOImp.class);
+		
 		
 		//Mock method call for testVerifyCredential()
 		//When this method is being call, the return object is the instance variable u.
-		Mockito.when(u = uDao.verifyCredential(u)).thenReturn(u);
+//		Mockito.when(ud.verifyCredential(u)).thenReturn(u);
 		
-		//Mock method call for testRegister()
-		Mockito.when(uDao.checkUserName("rob")).thenReturn(true);
-		Mockito.when(uDao.registUserAccount(u, "Customer")).thenReturn(true);
-		
-		cDao = Mockito.mock(CustomerDAOImp.class);
-		//Mock method call for testViewAvalableItem()
-		List<Item> i = new ArrayList<>();
-		i.add(new Item(1, "Iphone100", "Brand New", "Available", 1000, 0));
-		List<Item> items;
-		Mockito.when(items = cDao.viewAvailableItems()).thenReturn(i);
+//		//Mock method call for testRegister()
+//		Mockito.when(uDao.checkUserName("rob")).thenReturn(true);
+//		Mockito.when(uDao.registUserAccount(u, "Customer")).thenReturn(true);
+//		
+//		cDao = Mockito.mock(CustomerDAOImp.class);
+//		//Mock method call for testViewAvalableItem()
+//		List<Item> i = new ArrayList<>();
+//		i.add(new Item(1, "Iphone100", "Brand New", "Available", 1000, 0));
+//		List<Item> items;
+//		Mockito.when(items = cDao.viewAvailableItems()).thenReturn(i);
 	}
 	
 	@Test
 	public void testVerifyCredential() {
 		//call verifyCredential method then return the String userType of this User Object.
-		assertEquals("Customer", s.verifyCredential("robc", "wee"));
+		User u = new User("rob","wee");
+		Mockito.when(ud.getUserInfo("asdasd")).thenReturn(u);
+		assertEquals("Customer", s.verifyCredential("rob", "wee"));
 		
 	}
 	
-	@Test
-	public void testRegister() {
-		assertTrue(s.register("Customer"));
-	}
-	
-	@Test
-	public void testViewAvalableItem() {
-		s.viewAvalableItem();;
-	}
+//	@Test
+//	public void testRegister() {
+//		assertTrue(s.register("Customer"));
+//	}
+//	
+//	@Test
+//	public void testViewAvalableItem() {
+//		s.viewAvalableItem();;
+//	}
 }

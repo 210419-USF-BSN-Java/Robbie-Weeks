@@ -63,8 +63,8 @@ public class Offer {
 
 	@Override
 	public String toString() {
-		return "Offer [offerID=" + offerID + ", customerID=" + customerID + ", itemID=" + itemID + ", offerAmount="
-				+ offerAmount + ", offerStatus=" + offerStatus + "]";
+		return "Offer [offerID = " + offerID + ", customerID = " + customerID + ", itemID = " + itemID + ", offerAmount = "
+				+ offerAmount + ", offerStatus = " + offerStatus + "]";
 	}
 	
 	

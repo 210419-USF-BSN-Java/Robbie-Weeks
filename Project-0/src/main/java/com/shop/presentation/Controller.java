@@ -2,11 +2,13 @@ package com.shop.presentation;
 
 import java.util.Scanner;
 
+import com.shop.service.InputValidation;
 import com.shop.service.Service;
 
 public class Controller {
 	
 	Service s = new Service();
+	InputValidation validation = new InputValidation();
 	Scanner sc = new Scanner(System.in);
 	
 	////////////////////////////////Main menu///////////////////////////////////////
@@ -57,7 +59,7 @@ public class Controller {
 		String passWord = sc.nextLine();
 				
 		//call veryfy method to match the login credential with database.
-		String userType = s.verifyCredential2(userName, passWord);
+		String userType = s.verifyCredential(userName, passWord);
 		if(userType == null) {
 			System.out.println("Your login credential does not match the database record, please try again!");
 			mainMenu();
@@ -121,10 +123,21 @@ public class Controller {
 	}
 	
 	public void offerOption() {
-		System.out.println("Please enter the item ID: ");
-		String itemID = sc.nextLine();
-		System.out.println("Please enter the amount: ");
-		String offerAmount = sc.nextLine();
+		String itemID;
+		String offerAmount;
+		
+		//ask for item ID and check if the input is a positive integer.
+		do {
+			System.out.println("Please enter the item ID: ");
+			itemID = sc.nextLine();
+		} while (validation.idValidation(itemID) == false);
+		
+		//ask for offer amount and check if the input is a positive double.
+		do {
+			System.out.println("Please enter the amount: ");
+			offerAmount = sc.nextLine();
+		} while (validation.doubleValidation(offerAmount) == false);
+		
 		
 		s.makeOffer(Integer.parseInt(itemID), Double.parseDouble(offerAmount));
 	}
@@ -179,36 +192,60 @@ public class Controller {
 		String itemName = sc.nextLine();
 		System.out.println("Pleas enter item description:");
 		String itemDescription = sc.nextLine();
-		System.out.println("Pleas enter item minimum price:");
-		String minimunPrice = sc.nextLine();
+		
+		String minimunPrice;
+		//ask for minimun price and check if the input is a positive double.
+		do {
+			System.out.println("Pleas enter item minimum price:");
+			minimunPrice = sc.nextLine();
+		} while (validation.doubleValidation(minimunPrice) == false);		
+		
 		
 		s.addItem(itemName, itemDescription, Double.parseDouble(minimunPrice));
 	}
 	
 	public void editItem() {
 		//ask for item's field.
-		System.out.println("Pleas enter the item ID you want to edit:");
-		String itemID = sc.nextLine();
+		String itemID;
+		do {
+			System.out.println("Pleas enter the item ID you want to edit:");
+			itemID = sc.nextLine();
+		} while (validation.idValidation(itemID) == false);
+		
 		System.out.println("Pleas enter new item name:");
 		String itemName = sc.nextLine();
 		System.out.println("Pleas enter new item description:");
 		String itemDescription = sc.nextLine();
-		System.out.println("Pleas enter new item minimum price:");
-		String minimunPrice = sc.nextLine();
+		
+		String minimunPrice;
+		//ask for minimun price and check if the input is a positive double.
+		do {
+			System.out.println("Pleas enter new item minimum price:");
+			minimunPrice = sc.nextLine();
+		} while (validation.doubleValidation(minimunPrice) == false);
+		
 		
 		s.editItem(Integer.parseInt(itemID), itemName, itemDescription, Double.parseDouble(minimunPrice));
 	}
 	
 	public void removeItem() {
-		System.out.println("Pleas enter item id you would like to delete:");
-		String itemID = sc.nextLine();
+		String itemID;
+		do {
+			System.out.println("Pleas enter item id you would like to delete:");
+			itemID = sc.nextLine();
+		} while (validation.idValidation(itemID) == false);
+		
 		
 		s.removeItem(Integer.parseInt(itemID));
 	}
 	
 	public void offerAction() {
-		System.out.println("Please enter the offer ID: ");
-		String offerID = sc.nextLine();
+		String offerID;
+		do {
+			System.out.println("Please enter the offer ID: ");
+			offerID = sc.nextLine();
+		} while (validation.idValidation(offerID) == false);
+		
 		System.out.println("Please enter your action: ");
 		System.out.println("1. Accept the offer.");
 		System.out.println("2. Reject the offer.");
