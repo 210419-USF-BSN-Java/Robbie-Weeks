@@ -31,3 +31,18 @@
 2021-05-04 23:09:07 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 28.
 2021-05-04 23:09:19 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 29.
 2021-05-04 23:09:23 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 30.
+2021-05-04 23:17:17 INFO  Service:49 - The user ID: 19 has loged in as : Manager .
+2021-05-04 23:32:38 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-05 06:49:46 INFO  Service:116 - The user has registed a customer account with username: rob100 .
+2021-05-05 06:49:55 INFO  Service:49 - The user ID: 32 has loged in as : Customer .
+2021-05-05 06:50:09 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-05 06:50:46 INFO  Service:144 - The customer ID: 18 made an offer on item ID: 8 for 1000.0 dollars.
+2021-05-05 06:52:27 INFO  Service:49 - The user ID: 17 has loged in as : Employee .
+2021-05-05 06:52:54 INFO  Service:232 - The employee ID: 17 has added an item into database. Item name: lenovo, item description: laptop, minimumPrice: 800.0dollars.
+2021-05-05 06:53:41 INFO  Service:263 - The employee ID: 17 has made an decision on offer id: 8, offer decision: Accepted.
+2021-05-05 06:55:57 INFO  Service:49 - The user ID: 17 has loged in as : Employee .
+2021-05-05 06:56:16 INFO  Service:263 - The employee ID: 17 has made an decision on offer id: 18, offer decision: Accepted.
+2021-05-05 06:56:29 INFO  Service:263 - The employee ID: 17 has made an decision on offer id: 16, offer decision: Accepted.
+2021-05-05 06:58:41 INFO  Service:49 - The user ID: 19 has loged in as : Manager .
+2021-05-05 06:58:57 INFO  Service:116 - The user has registed a customer account with username: rob80 .
+2021-05-05 07:01:30 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 33.
