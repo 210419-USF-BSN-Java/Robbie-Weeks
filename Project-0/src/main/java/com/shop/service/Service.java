@@ -23,7 +23,7 @@ import com.shop.repository.UserDAOImp;
 
 public class Service {
 	Logger log = Logger.getLogger(Service.class);
-	User u;
+	User u = new User();
 	UserDAO uDao = new UserDAOImp();
 	CustomerDAO cDao = new CustomerDAOImp();
 	EmployeeDAO eDao = new EmployeeDAOImp();
