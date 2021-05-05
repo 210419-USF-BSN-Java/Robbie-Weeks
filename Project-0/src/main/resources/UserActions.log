@@ -11,3 +11,23 @@
 2021-05-04 18:19:39 INFO  Service:116 - The user has registed a customer account with username: robbie100 .
 2021-05-04 18:31:16 INFO  Service:206 - The employee ID: 0 has added an item into database. Item name: Iphone100, item description: Brand new, minimumPrice: 1000.0dollars.
 2021-05-04 22:45:38 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-04 22:53:05 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-04 22:59:15 INFO  Service:49 - The user ID: 17 has loged in as : Employee .
+2021-05-04 23:06:46 INFO  Service:49 - The user ID: 19 has loged in as : Manager .
+2021-05-04 23:06:56 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 22.
+2021-05-04 23:07:17 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 2.
+2021-05-04 23:07:23 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 3.
+2021-05-04 23:07:26 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 4.
+2021-05-04 23:07:28 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 5.
+2021-05-04 23:07:58 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 12.
+2021-05-04 23:07:59 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 13.
+2021-05-04 23:08:01 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 14.
+2021-05-04 23:08:03 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 15.
+2021-05-04 23:08:15 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 23.
+2021-05-04 23:08:17 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 24.
+2021-05-04 23:08:59 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 25.
+2021-05-04 23:09:02 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 26.
+2021-05-04 23:09:05 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 27.
+2021-05-04 23:09:07 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 28.
+2021-05-04 23:09:19 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 29.
+2021-05-04 23:09:23 INFO  Service:314 - The manager ID: 19 has fired an employee and deleted the employee account from databse. Employee id: 30.

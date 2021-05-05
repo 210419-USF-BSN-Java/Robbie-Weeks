@@ -321,11 +321,11 @@ public class Service {
 	
 	//call DAO method to create an offer list that has all offers and their status.
 	public void viewSalesHistory() {
-		List<Payment> payments = new ArrayList<>();
-		payments = mDao.viewSalesHistory();
+		List<Offer> acceptedOffers = new ArrayList<>();
+		acceptedOffers = mDao.viewSalesHistory();
 		
-		for(Payment p : payments) {
-			System.out.println(p);
+		for(Offer o : acceptedOffers) {
+			System.out.println(o);
 		}
 	}
 	

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.shop.model.Employee;
+import com.shop.model.Offer;
 import com.shop.model.Payment;
 import com.shop.model.User;
 import com.shop.util.ShopUtilities;
@@ -99,27 +100,28 @@ public class ManagerDAOImp implements ManagerDAO {
 		return success;
 	}
 	@Override
-	public List<Payment> viewSalesHistory() {
+	public List<Offer> viewSalesHistory() {
 		
-		List<Payment> payments = new ArrayList<>();
-
+		List<Offer> acceptedOffers = new ArrayList<Offer>();
+		
 		try(Connection conn = ShopUtilities.getConnection()){
 
-			//sql for select all payments from database.
-			String viewSales = "SELECT * FROM shop_payments WHERE payment_status = 'completed' ORDER BY payment_id";
-			PreparedStatement ps = conn.prepareStatement(viewSales);
+			//sql for select all pending offers from item_offer table.
+			String sql = "SELECT * FROM shop_offer WHERE offer_status = ? ORDER BY item_id";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, "Accepted");
 
 			//print the result from sql to ResultSet
 			ResultSet rs = ps.executeQuery();
 
-			//call constructor to create an Customer object
+			//add offer objects into offer list.
 			while(rs.next()) {
-				payments.add(new Payment(
-						rs.getInt("payment_ID"),
-						rs.getInt("customer_ID"),
-						rs.getInt("item_ID"),
-						rs.getString("payment_status"),
-						rs.getDouble("payment_amount")
+				acceptedOffers.add(new Offer(
+						rs.getInt("offer_id"),
+						rs.getInt("customer_id"),
+						rs.getInt("item_id"),
+						rs.getDouble("offer_amount"),
+						rs.getString("offer_status")
 						));
 			}
 
@@ -127,9 +129,10 @@ public class ManagerDAOImp implements ManagerDAO {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-		}	
-
-		return payments;
+		}
+		
+		//return offer list.
+		return acceptedOffers;
 	}
 
 }
