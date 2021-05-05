@@ -3,3 +3,10 @@
 2021-05-04 00:16:15 INFO  Service:139 - The customer ID: 21 made an offer on item ID: 4 for 1212.0 dollars.
 2021-05-04 15:09:27 INFO  Service:47 - The user ID: 18 has loged in as : Customer .
 2021-05-04 15:18:13 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-04 18:15:29 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-04 18:17:35 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-04 18:18:02 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-04 18:18:44 INFO  Service:49 - The user ID: 18 has loged in as : Customer .
+2021-05-04 18:18:44 INFO  Service:49 - The user ID: 17 has loged in as : Employee .
+2021-05-04 18:19:39 INFO  Service:116 - The user has registed a customer account with username: robbie100 .
+2021-05-04 18:31:16 INFO  Service:206 - The employee ID: 0 has added an item into database. Item name: Iphone100, item description: Brand new, minimumPrice: 1000.0dollars.
