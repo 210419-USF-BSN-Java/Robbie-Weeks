@@ -87,7 +87,8 @@ public class Controller {
 		System.out.println("4. View owned item.");	
 		System.out.println("5. Display remaining payments");
 		System.out.println("6. Display all payments");
-		System.out.println("7. Log out");
+		System.out.println("7. Pay weekly payments.");
+		System.out.println("8. Log out");
 		System.out.println("Please enter the option number above.");
 		String customerOption = sc.nextLine();
 
@@ -111,16 +112,34 @@ public class Controller {
 			s.viewAllPayments();
 
 		} else if(customerOption.equals("7")) {
+			payWeeklyPayment();
+
+		} else if(customerOption.equals("8")) {
 			//start fresh
 			logOut();
-			
-
+		
 		} else {
 			System.out.println("Please enter a valid number.");
 		}
 
 		customerMenu();
 		
+	}
+	
+	public void payWeeklyPayment() {
+		double weeklyPayment = s.calculateWeeklyPayments();
+		
+		System.out.println("");
+		System.out.println("Your total weekly payment for this term is: " + weeklyPayment + " dollars.\n");
+		System.out.println("1. Pay weekly payment.");
+		System.out.println("2. Cancel payment.\n");
+		System.out.println("Please enter the option number above.");
+		String payment = sc.nextLine();
+		
+		if(payment.equals("1")) {
+			s.payWeeklyPayment();
+
+		} 
 	}
 	
 	public void offerOption() {

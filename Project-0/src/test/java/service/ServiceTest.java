@@ -2,7 +2,6 @@ package service;
 
 import static org.junit.Assert.*;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.shop.service.Service;
@@ -23,7 +22,7 @@ public class ServiceTest {
 	
 	@Test
 	public void testRegister() {
-		
+		//this method will require console input.
 		assertTrue(s.register("Customer"));
 		
 	}

@@ -183,13 +183,39 @@ public class Service {
 		}
 	}
 	
-	////call DAO method to create an payment list that has all completed and incomplete payments, then print.
+	//call DAO method to create an payment list that has all completed and incomplete payments, then print.
 	public void viewAllPayments() {
 		List<Payment> payments = new ArrayList<>();
 		payments = pDao.viewAllPayments(u);
 		
 		for(Payment p : payments) {
 			System.out.println(p);
+		}
+	}
+	
+	//
+	public double calculateWeeklyPayments() {
+		List<Payment> payments = new ArrayList<>();
+		payments = pDao.viewRemainPayments(u);
+		
+		double totalWeeklyPayment = 0;
+		
+		for(Payment p : payments) {
+			System.out.println(p);
+			totalWeeklyPayment += p.getRemainPayment()/p.getRemainTerms();
+		}
+		
+		return totalWeeklyPayment;
+	
+	}
+	
+	public void payWeeklyPayment() {
+		boolean success = pDao.payWeeklyPayment();
+		
+		if(success == true) {
+			System.out.println("You have paid your weekly payment.");
+		} else {
+			System.out.println("You have failed to pay your weekly payment.");
 		}
 	}
 	

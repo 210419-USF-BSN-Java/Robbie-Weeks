@@ -20,7 +20,7 @@ public class SaltTest {
 		//compare if the hashedPassword is equals to hased password+salt.
 		assertEquals(true, salt.verifyHashedPass(password, hasedPassword, existSalt));
 		
-		//compare a same password but different salt.
+		//compare a same password but different salt that not associate with the username.
 		String existSalt2 = "I am some random salt.";
 		assertEquals(false, salt.verifyHashedPass(password, hasedPassword, existSalt2));
 		
