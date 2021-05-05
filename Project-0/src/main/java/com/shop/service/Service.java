@@ -29,24 +29,29 @@ public class Service {
 	EmployeeDAO eDao = new EmployeeDAOImp();
 	ManagerDAO mDao = new ManagerDAOImp();
 	PaymentDAO pDao = new PaymentDAOImp();
-	
+	Salt salt = new Salt();
 	Scanner sc = new Scanner(System.in);
-	
+
 	//Verify hashed password
 	public String verifyCredential(String userName, String passWord) {
-		u = new User (userName,passWord);
-		
-		String[] hashAndSalt = uDao.getHashAndSalt(u);
+
+		String[] hashAndSalt = uDao.getHashAndSalt(userName);
 		
 		//call veryfyHashedPass() with password input, hashed password, and user salt.
-		boolean verifyResult = Salt.verifyHashedPass(passWord, hashAndSalt[0], hashAndSalt[1]);
+		boolean verifyResult = salt.verifyHashedPass(passWord, hashAndSalt[0], hashAndSalt[1]);
 		
 		if(verifyResult == true) {
 			//get user info.
 			u = uDao.getUserInfo(userName);
+			System.out.println("\nWelcome, " + u.getFirstName() + " " + u.getLastName() + ".");
+			System.out.println("What would you like to do: \n");
+			
 			log.info("The user ID: " + u.getUserID() + " has loged in as : " + u.getUserType() + " .");
+			
 			return u.getUserType();
+			
 		} else {
+			
 			return null;
 		}
 
@@ -62,7 +67,7 @@ public class Service {
 		
 		do {
 			//ask for a new username.
-			System.out.println("Pleas enter a username you would like to register:");
+			System.out.println("\nPleas enter a username you would like to register:");
 			userName = sc.nextLine();
 			
 		} while(userName.length() < 1);
@@ -72,34 +77,34 @@ public class Service {
 
 		//loop until the user enter a valid username that do not exist in database.
 		while(exist == true) {
-			System.out.println("This username is already exist, please enter a new username: ");
+			System.out.println("\nThis username is already exist, please enter a new username: ");
 			userName = sc.nextLine();
 			exist = uDao.checkUserName(userName);
 		} 
 		
 		//do-while loop prevent if the user accidently hit enter without an input.
 		do {
-			System.out.println("Pleas enter password:");
+			System.out.println("\nPleas enter password:");
 			passWord = sc.nextLine();
 			
 		} while(passWord.length() < 1);
 		
 		//do-while loop prevent if the user accidently hit enter without an input.
 		do {
-			System.out.println("Pleas enter first name:");
+			System.out.println("\nPleas enter first name:");
 			firstName = sc.nextLine();
 			
 		} while(firstName.length() < 1);
 		
 		//do-while loop prevent if the user accidently hit enter without an input.
 		do {
-			System.out.println("Pleas enter last name:");
+			System.out.println("\nPleas enter last name:");
 			lastName = sc.nextLine();
 			
 		} while(lastName.length() < 1);
 		
 		//create salt with password and return a String array with 1) hashed password. 2) the salt generated for this password.
-		String[] hashAndSalt = Salt.saltHashing(passWord);
+		String[] hashAndSalt = salt.saltHashing(passWord);
 		
 		//create an User object with username, hashed password, firstname, lastname, and salt.
 		User u = new User(userName,hashAndSalt[0],firstName,lastName, hashAndSalt[1]);

@@ -44,10 +44,10 @@ public class UserDAOImpTest {
 		User u = new User();
 		u.setUserName("robbie99");
 		
-		assertArrayEquals(expect, uDao.getHashAndSalt(u));
+		assertArrayEquals(expect, uDao.getHashAndSalt(u.getUserName()));
 		
 		u.setUserName("robc");
-		assertNotEquals(expect, uDao.getHashAndSalt(u));
+		assertNotEquals(expect, uDao.getHashAndSalt(u.getUserName()));
 		
 	}
 }

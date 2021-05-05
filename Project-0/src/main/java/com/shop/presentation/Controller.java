@@ -22,7 +22,7 @@ public class Controller {
 	public void mainMenu() {
 		//loginTimer();
 		
-		System.out.println("1. Login.");
+		System.out.println("\n1. Login.");
 		System.out.println("2. Regist for a customer account.");		
 		System.out.println("Please enter the option number above.");
 		String menuInput = sc.nextLine();
@@ -53,9 +53,9 @@ public class Controller {
 	public void login() {
 		
 		//ask for user's credential input.
-		System.out.println("Pleas enter your username:");
+		System.out.println("\nPleas enter your username:");
 		String userName = sc.nextLine();
-		System.out.println("Pleas enter your password:");
+		System.out.println("\nPleas enter your password:");
 		String passWord = sc.nextLine();
 				
 		//call veryfy method to match the login credential with database.
@@ -80,6 +80,7 @@ public class Controller {
 	
 ////////////////////////////////Customer menu///////////////////////////////////////
 	public void customerMenu() {
+		System.out.println("");
 		System.out.println("1. View available items.");
 		System.out.println("2. Make an offer to a item.");
 		System.out.println("3. View status of my offers.");
@@ -146,6 +147,7 @@ public class Controller {
 
 	
 	public void employeeMenu() {
+		System.out.println("");
 		System.out.println("1. Add an item to the shop.");
 		System.out.println("2. View pending item offers.");
 		System.out.println("3. Accept/reject an offer.");
@@ -262,6 +264,7 @@ public class Controller {
 	
 ////////////////////////////////Manager menu///////////////////////////////////////
 	public void managerMenu() {
+		System.out.println("");
 		System.out.println("1. Create an employee acount.");
 		System.out.println("2. View employee list.");
 		System.out.println("3. Fire an employee.");

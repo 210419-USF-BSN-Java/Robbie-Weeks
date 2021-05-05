@@ -12,7 +12,7 @@ import com.shop.util.ShopUtilities;
 
 public class UserDAOImp implements UserDAO{
 	
-	public String[] getHashAndSalt(User u) {
+	public String[] getHashAndSalt(String userName) {
 		String[] hashAndSalt = new String[2];
 		
 		try(Connection conn = ShopUtilities.getConnection()){
@@ -21,7 +21,7 @@ public class UserDAOImp implements UserDAO{
 			PreparedStatement ps = conn.prepareStatement(getHash);
 			
 			//set user's login credential to verify
-			ps.setString(1, u.getUserName());
+			ps.setString(1, userName);
 			
 			//add result into Resultset.
 			ResultSet rs = ps.executeQuery();

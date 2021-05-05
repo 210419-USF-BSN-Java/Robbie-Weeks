@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -14,29 +13,31 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.shop.model.User;
 import com.shop.repository.CustomerDAOImp;
 import com.shop.repository.UserDAO;
+import com.shop.repository.UserDAOImp;
+import com.shop.service.Salt;
 import com.shop.service.Service;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ServiceTest {
 	//Test all units with mockito methods.
+
+	@Mock
+	static UserDAO uDao;
 	
-//	static Service s;
-//	static User u;
+	@Mock
+	static Salt salt;
+	User u = new User(1,"rob","wee","Customer");
+	
+	Service s = new Service();
 //	@Mock
-//	UserDAOImp uDao;
-	@InjectMocks
-	Service s;
-	
-	@Mock
-	UserDAO ud;
-	
-	@Mock
-	CustomerDAOImp cDao;
+//	CustomerDAOImp cDao;
 
 	
 	@BeforeClass
 	public static void setUp() {
-//		s = new Service();
+		uDao = Mockito.mock(UserDAOImp.class);
+		salt = Mockito.mock(Salt.class);
+		
 //		uDao = Mockito.mock(UserDAOImp.class);
 		
 		
@@ -59,8 +60,12 @@ public class ServiceTest {
 	@Test
 	public void testVerifyCredential() {
 		//call verifyCredential method then return the String userType of this User Object.
-		User u = new User("rob","wee");
-		Mockito.when(ud.getUserInfo("asdasd")).thenReturn(u);
+		
+		String[] hashAndSalt = new String[2];
+		
+		Mockito.when(uDao.getHashAndSalt("rob")).thenReturn(hashAndSalt);
+		Mockito.when(salt.verifyHashedPass("wee", hashAndSalt[0], hashAndSalt[1])).thenReturn(true);
+		
 		assertEquals("Customer", s.verifyCredential("rob", "wee"));
 		
 	}

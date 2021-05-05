@@ -7,7 +7,7 @@ import java.util.UUID;
 public class Salt {
 	
 	
-	public static String[] saltHashing(String password) {
+	public String[] saltHashing(String password) {
 		//to be returned
 		String[] result = new String[2];
 		
@@ -49,7 +49,7 @@ public class Salt {
 		return result;
 	}
 	
-	public static boolean verifyHashedPass(String password, String hashedPassword, String salt) {
+	public boolean verifyHashedPass(String password, String hashedPassword, String salt) {
 		
 		String hashedInput = "";
 		String saltedPassword = password + salt;

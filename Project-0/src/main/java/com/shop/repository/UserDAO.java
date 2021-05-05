@@ -13,6 +13,6 @@ public interface UserDAO {
 	//register an user.
 	public boolean registUserAccount(User u, String userType);
 
-	public String[] getHashAndSalt(User u);
+	public String[] getHashAndSalt(String userName);
 	
 }
