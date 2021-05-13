@@ -172,8 +172,9 @@ public class Controller {
 		System.out.println("3. Accept/reject an offer.");
 		System.out.println("4. Remove item from the shop.");	
 		System.out.println("5. Display all customer payments.");
-		System.out.println("6. Edit an item.");
-		System.out.println("7. Log out");
+		System.out.println("6. View avaible items.");
+		System.out.println("7. Edit an item.");
+		System.out.println("8. Log out");
 		System.out.println("Please enter the option number above.");
 		String employeeOption = sc.nextLine();
 
@@ -194,9 +195,12 @@ public class Controller {
 			s.empViewAllPayments();
 
 		} else if(employeeOption.equals("6")) {
-			editItem();
+			s.viewAvalableItem();
 
 		} else if(employeeOption.equals("7")) {
+			editItem();
+
+		} else if(employeeOption.equals("8")) {
 			//start fresh
 			logOut();
 			

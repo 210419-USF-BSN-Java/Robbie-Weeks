@@ -31,6 +31,16 @@ public class Service {
 	PaymentDAO pDao = new PaymentDAOImp();
 	Salt salt = new Salt();
 	Scanner sc = new Scanner(System.in);
+	
+	public Service (){
+		
+	}
+	
+	public Service (Salt salt, UserDAO uDao){
+		this.uDao = uDao;
+		this.salt = salt;
+	}
+	
 
 	//Verify hashed password
 	public String verifyCredential(String userName, String passWord) {
