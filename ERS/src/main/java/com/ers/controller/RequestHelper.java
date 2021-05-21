@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ers.delegates.EmployeeDelegate;
+import com.ers.delegates.ManagerDelegate;
 import com.ers.delegates.UserDelegate;
 
 public class RequestHelper {
@@ -13,51 +15,31 @@ public class RequestHelper {
 	UserDelegate ude = new UserDelegate();
 	
 	public void processGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// determine if this is a record based request
-//		String path = request.getServletPath();
-//		if(path.startsWith("/api/")) {
-//			// we will authenticate the token here
-//			if(!authDelegate.isAuthorized(request)) {
-//				response.sendError(401);
-//				return;
-//			}
-//			
-//			String record = path.substring(5);
-//			if(record.startsWith("users")) {
-//				userDelegate.getUsers(request, response);
-//			} else {
-//				response.sendError(404, "Request Record(s) Not Found");	
-//			}
-//			
-//		} else {
-//			viewDelegate.resolveView(request, response);
-//		}
-		System.out.println("inside request helper: doGet");
+		EmployeeDelegate ede = new EmployeeDelegate(request);
+		ManagerDelegate mde = new ManagerDelegate(request);
 		
+		System.out.println("inside request helper: doGet");
 		String path = request.getServletPath();
 		System.out.println(path);
 		
 		switch(path) {
 		case "/viewPending":
-			
+			ede.viewPending(request, response);
 			break;
 		case "/viewResolved":
-			
+			ede.viewSolved(request, response);
 			break;
 		case "/viewInfo":
-			
+			ede.viewInfo(request, response);
 			break;
 		case "/viewAllPending":
-			
+			mde.viewAllPending(request, response);
 			break;
 		case "/viewAllResolved":
-			
+			mde.viewAllResolved(request, response);
 			break;
 		case "/viewAllEmployee":
-			
-			break;
-		case "/viewReimById":
-			
+			mde.viewAllEmployee(request, response);
 			break;
 		default:
 			response.sendError(405);
@@ -66,9 +48,10 @@ public class RequestHelper {
 	
 	
 	public void processPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		EmployeeDelegate ede = new EmployeeDelegate(request);
+		ManagerDelegate mde = new ManagerDelegate(request);
 		
 		System.out.println("inside request helper: doPost");
-		
 		String path = request.getServletPath();
 		System.out.println(path);
 		
@@ -77,13 +60,13 @@ public class RequestHelper {
 			ude.verifyCredential(request, response);
 			break;
 		case "/addReim":
-			
+			ede.addReim(request, response);
 			break;
 		case "/updateInfo":
-			
+			ede.updateInfo(request, response);
 			break;
 		case "/reimAction":
-			
+			mde.requestAction(request, response);
 			break;
 		default:
 			response.sendError(405);
