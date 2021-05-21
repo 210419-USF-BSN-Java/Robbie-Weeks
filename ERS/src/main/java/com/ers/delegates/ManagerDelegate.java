@@ -21,7 +21,21 @@ public class ManagerDelegate {
 	private UserDao ud = new UserDaoImp();
 	private ObjectMapper om = new ObjectMapper();
 	
-	private int managerID = 1;
+	private int managerID;
+	
+	public ManagerDelegate(HttpServletRequest request) {
+		fetchSession(request);
+	}
+	
+	public void fetchSession(HttpServletRequest request) {
+		
+		String token = request.getHeader("Authorization");
+		
+		if(token != null) {
+			String[] userInfo = token.split(":");
+			managerID = Integer.parseInt(userInfo[0]);
+		}
+	}
 	
 	public void requestAction(HttpServletRequest request, HttpServletResponse response) {
 		
