@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<title>Employee</title>
+</head>
+<body style=
+	"background: coral;"
+>
+    <h1>Reimbursement Form</h1>
+    <br>
+    <h2>Please fill out the follow reimbursement application form:</h2>
+
+
+	<div style="display:flex;justify-content:left" >
+	<div>
+    <br>		
+    <label>Expense amount: </label>
+    <br>
+	<input type="number" id = "amount" class="form-control mb-3" placeholder="ex: 500.00">
+    <br>
+    <label>Expense type: </label>
+    <br>
+    <select id = "type" class="form-control mb-3" >
+        <option> Lodging </option>
+        <option> Travel </option>
+        <option> Food </option>
+        <option> Other </option>
+    </select>
+    <br>
+    <label>Expense description: </label>
+	<input type="text" id = "description" class="form-control mb-3" placeholder="ex: flight ticket"><!--need to be change to bigger content tag-->
+    <br>
+    <label>Upload a receipt of your expense (Optional): </label>
+    <br>
+    <input type="file" id="image" class="form-control mb-3">
+    <br>
+    <button id = "submit" class="btn-primary" type="submit">Submit Reimbursement</button>
+    <br>
+    <br>
+    <button id = "back" class="btn-primary" type="submit">Back to menu</button>
+        
+</div>
+	<script src="reimbursement.js"></script>
+</body>
+</html>
