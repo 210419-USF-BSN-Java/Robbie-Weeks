@@ -29,7 +29,7 @@ public class RequestHelper {
 		case "/viewResolved":
 			ede.viewSolved(request, response);
 			break;
-		case "/viewInfo":
+		case "/getInfo":
 			ede.viewInfo(request, response);
 			break;
 		case "/viewAllPending":
@@ -40,6 +40,9 @@ public class RequestHelper {
 			break;
 		case "/viewAllEmployee":
 			mde.viewAllEmployee(request, response);
+			break;
+		case "/viewAllRquestById":
+			mde.viewAllResolved(request, response);
 			break;
 		default:
 			response.sendError(405);
@@ -59,7 +62,7 @@ public class RequestHelper {
 		case "/login":
 			ude.verifyCredential(request, response);
 			break;
-		case "/addReim":
+		case "/submitReim":
 			ede.addReim(request, response);
 			break;
 		case "/updateInfo":

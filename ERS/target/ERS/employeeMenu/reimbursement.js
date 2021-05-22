@@ -6,7 +6,8 @@ function submitReim(){
 	let type = document.getElementById("type").value;
     let description = document.getElementById("description").value;
     let file = document.getElementById("image").value;
-	
+	let token = localStorage.getItem("token")
+
 	let xhr = new XMLHttpRequest();
 	let url = "http://localhost:8080/ERS/submitReim";
 	xhr.open("POST", url);
@@ -23,12 +24,13 @@ function submitReim(){
 	}
 
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.setRequestHeader("Authorization",token);
 	let requestBody = `amount=${amount}&type=${type}&description=${description}&file=${file}`;
 	xhr.send(requestBody);
 }
 
 function back(){
 
-    window.location.href="http://localhost:8080/ERS/manager.html"
+    window.location.href="http://localhost:8080/ERS/employee.html"
 
 }

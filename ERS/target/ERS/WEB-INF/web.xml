@@ -5,15 +5,64 @@
 <web-app>
   <display-name>ERS</display-name>
   
-  
-  
   <servlet>
     <servlet-name>Front</servlet-name>
     <servlet-class>com.ers.controller.FrontController</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>Front</servlet-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/submitReim</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/getInfo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/updateInfo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/reimAction</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/viewAllPending</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/viewAllResolved</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/viewAllEmployee</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/viewPending</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/viewResolved</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/viewAllRquestById</url-pattern>
   </servlet-mapping>
   
 </web-app>

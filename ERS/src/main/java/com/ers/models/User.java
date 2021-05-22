@@ -52,7 +52,15 @@ public class User {
 		this.email = email;
 	}
 
-	
+	//contructor for viewInfo() dao.
+	public User(int userID, String firstName, String lastName, int userRole, String email) {
+		super();
+		this.userID = userID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userRole = userRole;
+		this.email = email;
+	}
 
 	public User(int userID, String firstName, String lastName, String email) {
 		super();

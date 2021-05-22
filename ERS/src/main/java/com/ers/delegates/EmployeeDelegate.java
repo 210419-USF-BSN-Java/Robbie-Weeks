@@ -37,40 +37,45 @@ public class EmployeeDelegate {
 	
 	public void addReim(HttpServletRequest request, HttpServletResponse response) {
 
-		String reimRequest = request.getHeader("reimRequest");
-		Reimbursment reim = null;
+		double amount = Double.parseDouble(request.getParameter("amount"));
+		String type = request.getParameter("type");
+		String description = request.getParameter("description");
+		int typeID = 0;
 		
-		try {
-			reim = mapper.readValue(reimRequest, Reimbursment.class);
-			reim.setAuthorID(userID);// authorID
-			reim.setStatusID(1);// 1 = Pending
-			
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+		switch (type) {
+		case "Lodging":
+			typeID = 1;
+			break;
+		case "Travel":
+			typeID = 2;
+			break;
+		case "Food":
+			typeID = 3;
+			break;
+		case "Other":
+			typeID = 4;
+			break;
 		}
 		
-		boolean success = ed.makeReim(reim);
-		System.out.println(reim);
-		
+		Reimbursment reim = new Reimbursment(amount, description, userID, 1, typeID);
+	
+		ed.makeReim(reim);
 	}
 	
 	public void viewPending(HttpServletRequest request, HttpServletResponse response) {
 			
 		List<Reimbursment> pendingList = ed.viewPending(userID);
-		System.out.println(pendingList);
 		
 		String pendingJson = null;
 		try {
 			pendingJson = mapper.writeValueAsString(pendingList);
-			System.out.println(pendingJson);
+			
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		
 		response.setStatus(200);
-		response.setHeader("pendingReim", pendingJson);
+		response.setHeader("pendingList", pendingJson);
 		
 	}
 	
@@ -78,18 +83,15 @@ public class EmployeeDelegate {
 			
 		List<Reimbursment> resolvedList = ed.viewPending(userID);
 		
-		//use jackson to parse the user object and add to request:
 		String resolvedJson = null;
 		try {
 			resolvedJson = mapper.writeValueAsString(resolvedList);
-			System.out.println(resolvedJson);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		response.setStatus(200);
-		response.setHeader("resolvedReim", resolvedJson);
+		response.setHeader("resolvedList", resolvedJson);
 
 	}
 	
@@ -101,12 +103,12 @@ public class EmployeeDelegate {
 		String userJson = null;
 		try {
 			userJson = mapper.writeValueAsString(u);
-			System.out.println(userJson);
+
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println(userJson);
 		response.setStatus(200);
 		response.setHeader("userInfo", userJson);
 		

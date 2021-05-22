@@ -52,6 +52,7 @@ public class EmployeeDegateTest {
 		pendingList.add(new Reimbursment(500.00, "flight ticket", 11, 1, 1, 1));
 		
 		Mockito.when(ed.viewPending(11)).thenReturn(pendingList);
+		
 		Mockito.when(ed.viewResolved(11)).thenReturn(pendingList);
 		
 	}
@@ -76,20 +77,20 @@ public class EmployeeDegateTest {
 		
 	}
 	
-	@Test
-	public void viewSolvedTest() {
-		
-		ede.viewSolved(request, response);
-		
-	}
-	
-	@Test
-	public void viewInfoTest() {
-		
-		
-		ede.viewInfo(request, response);
-		
-	}
+//	@Test
+//	public void viewSolvedTest() {
+//		
+//		ede.viewSolved(request, response);
+//		
+//	}
+//	
+//	@Test
+//	public void viewInfoTest() {
+//		
+//		
+//		ede.viewInfo(request, response);
+//		
+//	}
 	
 //	@Test
 //	public void updateInfoTest() {

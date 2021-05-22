@@ -18,35 +18,35 @@ public class UserDaoTest {
 	Salt salt = new Salt();
 	
 	
-	@Test
-	public void testRegistUserAccount() {
-		User u = new User();
-		u.setUserName("rob");
-		u.setUserRole(1);
-		String[] pass = salt.saltHashing("wee");
-		u.setPassWord(pass[0]);
-		u.setSalt(pass[1]);
-		
-		System.out.println(u);
-		assertTrue(ud.registUserAccount(u));
-		
-	}//passed
-	
-	@Test
-	public void testGetHashAndSalt() {
-		String[] expect = new String[2];
-		expect[0] = "1233";
-		expect[1] = "3321";
-		
-		User u = new User();
-		u.setUserName("rob");
-
-		
-		//assertArrayEquals(expect, ud.getHashAndSalt(u.getUserName()));
-		
-		u.setUserName("robc");
-		//assertNotEquals(expect, ud.getHashAndSalt(u.getUserName()));
-		
-	}//passed
+//	@Test
+//	public void testRegistUserAccount() {
+//		User u = new User();
+//		u.setUserName("rob");
+//		u.setUserRole(1);
+//		String[] pass = salt.saltHashing("wee");
+//		u.setPassWord(pass[0]);
+//		u.setSalt(pass[1]);
+//		
+//		System.out.println(u);
+//		assertTrue(ud.registUserAccount(u));
+//		
+//	}//passed
+//	
+//	@Test
+//	public void testGetHashAndSalt() {
+//		String[] expect = new String[2];
+//		expect[0] = "1233";
+//		expect[1] = "3321";
+//		
+//		User u = new User();
+//		u.setUserName("rob");
+//
+//		
+//		//assertArrayEquals(expect, ud.getHashAndSalt(u.getUserName()));
+//		
+//		u.setUserName("robc");
+//		//assertNotEquals(expect, ud.getHashAndSalt(u.getUserName()));
+//		
+//	}//passed
 
 }

@@ -37,13 +37,10 @@ public class EmployeeDaoImp implements EmployeeDao{
 			while(rs.next()) {
 				u = new User(
 					rs.getInt("ers_user_id"),
-					rs.getString("ers_username"),
-					rs.getString("ers_password"),
 					rs.getString("first_name"),
 					rs.getString("last_name"),
 					rs.getInt("user_role"),
-					rs.getString("user_email"),
-					rs.getString("user_salt")
+					rs.getString("user_email")
 						);
 			}
 

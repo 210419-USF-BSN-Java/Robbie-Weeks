@@ -59,13 +59,13 @@ public class ManagerDelegate {
 		String pendingJson = null;
 		try {
 			pendingJson = om.writeValueAsString(pendingList);
-			System.out.println(pendingJson);
+
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
 		
 		response.setStatus(200);
-		response.setHeader("pendingReim", pendingJson);
+		response.setHeader("pendingList", pendingJson);
 	}
 	
 	public void viewAllResolved(HttpServletRequest request, HttpServletResponse response) {
@@ -76,14 +76,13 @@ public class ManagerDelegate {
 		String resolvedJson = null;
 		try {
 			resolvedJson = om.writeValueAsString(resolvedList);
-			System.out.println(resolvedJson);
+			
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		response.setStatus(200);
-		response.setHeader("solvedReim", resolvedJson);//parsed user object
+		response.setHeader("resolvedList", resolvedJson);
 	}
 	
 	public void viewAllEmployee(HttpServletRequest request, HttpServletResponse response) {
@@ -94,14 +93,14 @@ public class ManagerDelegate {
 		String allEmployee = null;
 		try {
 			allEmployee = om.writeValueAsString(employeeList);
-			System.out.println(allEmployee);
+			
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		response.setStatus(200);
-		response.setHeader("allEmployee", allEmployee);//parsed user object
+		response.setHeader("employeeList", allEmployee);//parsed user object
 	}
 
 }

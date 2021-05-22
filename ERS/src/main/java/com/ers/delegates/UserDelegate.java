@@ -28,7 +28,7 @@ public class UserDelegate {
 		
 		if(verifyResult == true) {
 			u = ud.getUserInfo(userName);
-			String token = u.getUserID() + ":" + userName + ":" + u.getUserRole();
+			String token = u.getUserID() + ":" + u.getFirstName() + ":" + u.getUserRole();
 			response.setStatus(200);
 			response.setHeader("Authorization", token);
 			

@@ -16,7 +16,15 @@ public class Reimbursment {
 		
 	}
 	
-	
+	public Reimbursment(double amount, String description, int authorID, int statusID,
+			int typeID) {
+		super();
+		this.amount = amount;
+		this.description = description;
+		this.authorID = authorID;
+		this.statusID = statusID;
+		this.typeID = typeID;
+	}
 	
 	public Reimbursment(double amount, String description, int authorID, int resolverID, int statusID,
 			int typeID) {
