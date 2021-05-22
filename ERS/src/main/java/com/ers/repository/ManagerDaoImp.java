@@ -115,4 +115,44 @@ public class ManagerDaoImp implements ManagerDao{
 		return Reimbursments;
 	}
 
+	@Override
+	public List<Reimbursment> viewAllRequestById(int userID) {
+		List<Reimbursment> Reimbursments = new ArrayList<>();
+
+		try(Connection conn = ErsUtil.getConnection()){
+
+			//sql for select all awaiting payments that belongs to current customer ID.
+			String sql = "SELECT * FROM ers_reimbursement WHERE reim_author = ?  ORDER BY reim_id";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userID);
+
+			//print the result from ResultSet.
+			ResultSet rs = ps.executeQuery();
+
+			//add payment objects into a payment list.
+			while(rs.next()) {
+				Reimbursments.add(new Reimbursment(
+						rs.getInt("reim_id"),
+						rs.getDouble("reim_amount"),
+						rs.getString("reim_submitted"),
+						rs.getString("reim_resolved"),
+						rs.getString("reim_description"),
+						rs.getString("reim_receipt"),
+						rs.getInt("reim_author"),
+						rs.getInt("reim_resolver"),
+						rs.getInt("reim_status_id"),
+						rs.getInt("reim_type_id")
+						));
+			}
+
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}	
+
+		return Reimbursments;
+	}
+
 }

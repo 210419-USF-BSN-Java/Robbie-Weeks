@@ -16,17 +16,14 @@ public class FrontController extends DefaultServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		String path = request.getServletPath();
-//		if (path.startsWith("/static/")) {
-//			super.doGet(request, response);
-//		} else {
-			rh.processGet(request, response);
-//		}
+		
+		rh.processGet(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("inside dopost");
+		
 		rh.processPost(request, response);
 
 	}

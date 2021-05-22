@@ -93,14 +93,39 @@ public class ManagerDelegate {
 		String allEmployee = null;
 		try {
 			allEmployee = om.writeValueAsString(employeeList);
+			System.out.println(allEmployee);
 			
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println(allEmployee);
 		response.setStatus(200);
 		response.setHeader("employeeList", allEmployee);//parsed user object
+	}
+	
+	public void viewAllRquestById(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("employeeID");
+		System.out.println(id);
+		System.out.println(managerID);
+		int employeeID = Integer.parseInt(request.getHeader("employeeID"));
+		//int employeeID = Integer.parseInt(request.getParameter("employeeID"));
+		//System.out.println(employeeID);
+		
+		List<Reimbursment> requestList = md.viewAllRequestById(employeeID);
+		
+		//use jackson to parse the user object and add to request:
+		String requestJson = null;
+		try {
+			requestJson = om.writeValueAsString(requestList);
+			
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		response.setStatus(200);
+		response.setHeader("requestList", requestJson);
+		
 	}
 
 }

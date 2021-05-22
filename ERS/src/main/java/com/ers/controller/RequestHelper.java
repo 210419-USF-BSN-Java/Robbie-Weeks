@@ -42,7 +42,7 @@ public class RequestHelper {
 			mde.viewAllEmployee(request, response);
 			break;
 		case "/viewAllRquestById":
-			mde.viewAllResolved(request, response);
+			mde.viewAllRquestById(request, response);;
 			break;
 		default:
 			response.sendError(405);

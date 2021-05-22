@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -159,8 +160,37 @@ public class UserDaoImp implements UserDao{
 
 	@Override
 	public List<User> viewAllEmployee() {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> employeeList = new ArrayList<>();
+		
+		try(Connection conn = ErsUtil.getConnection()){
+			
+			//select user information from database
+			String sql = "SELECT ers_user_id, first_name, last_name, user_email FROM ers_user where user_role = 1";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			//add result into resultset 
+			ResultSet rs = ps.executeQuery();
+
+			//pass the user information from resultset to an User object.
+			if(rs != null) {
+				while(rs.next()) { 
+					employeeList.add(new User(
+							rs.getInt("ers_user_id"),
+							rs.getString("first_name"),
+							rs.getString("last_name"),
+							rs.getString("user_email")
+							)	
+						);
+				} 
+			}
+
+
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		
+		return employeeList;
 	}
 
 }

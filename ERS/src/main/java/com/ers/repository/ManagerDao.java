@@ -15,4 +15,6 @@ public interface ManagerDao {
 	//view all resolved and request and which manager id took action.
 	public List<Reimbursment> viewAllResolved();
 	
+	//view all request history of an employee ID.
+	public List<Reimbursment> viewAllRequestById(int userID);
 }
