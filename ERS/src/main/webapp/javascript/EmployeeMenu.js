@@ -1,3 +1,20 @@
+let token = localStorage.getItem("token");
+
+if(!token){
+	window.location.href="http://localhost:8080/ERS/";
+} else {
+
+	let userInfo = token.split(":");
+	if(userInfo[2] == 1){
+		
+		let welcome = document.getElementById("welcome");
+		welcome.innerText="Welcome to the ERS, " + userInfo[1];
+
+	} else if(userInfo[2] == 2){
+		window.location.href="http://localhost:8080/ERS/manager.html";
+	}
+}
+
 document.getElementById("addReim").addEventListener("click", addReim);
 document.getElementById("viewPending").addEventListener("click", viewPending);
 document.getElementById("viewSolved").addEventListener("click", viewSolved);

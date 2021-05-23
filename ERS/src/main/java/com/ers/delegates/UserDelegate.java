@@ -34,34 +34,7 @@ public class UserDelegate {
 			
 		} else {
 			response.sendError(401);
-		}
-		
-		
+		}	
 	}
-	
-	public boolean isAuthorized(HttpServletRequest request) {
-		String authToken = request.getHeader("Authorization");
-		// check to see if there is an auth header
-		if (authToken != null) {
-			String[] tokenArr = authToken.split(":");
-			// if the token is formatted the way we expect, we can take the id from it and
-			// query for that user
-			if (tokenArr.length == 2) {
-				String userName = tokenArr[0];
-				String userRole = tokenArr[1];
-
-				// check to see if there is a valid user and if that user is the appropriate
-				// role in their token
-				User u = ud.getUserInfo(userName);
-				if (u != null && u.getUserRole() == Integer.parseInt(userRole)) {
-					return true;
-				}
-
-			}
-		}
-		return false;
-	}
-	
-	
 }
 	
