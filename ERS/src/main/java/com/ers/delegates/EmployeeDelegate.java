@@ -98,17 +98,16 @@ public class EmployeeDelegate {
 	public void viewInfo(HttpServletRequest request, HttpServletResponse response) {
 
 		User u = ed.viewInfo(userID);
-			
-		//use jackson to parse the user object and add to request:
+	
 		String userJson = null;
 		try {
 			userJson = mapper.writeValueAsString(u);
 
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		System.out.println(userJson);
+		
 		response.setStatus(200);
 		response.setHeader("userInfo", userJson);
 		

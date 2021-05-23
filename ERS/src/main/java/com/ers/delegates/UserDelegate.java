@@ -27,6 +27,7 @@ public class UserDelegate {
 		boolean verifyResult = salt.verifyHashedPass(passWord, passAndSalt[0], passAndSalt[1]);
 		
 		if(verifyResult == true) {
+			
 			u = ud.getUserInfo(userName);
 			String token = u.getUserID() + ":" + u.getFirstName() + ":" + u.getUserRole();
 			response.setStatus(200);

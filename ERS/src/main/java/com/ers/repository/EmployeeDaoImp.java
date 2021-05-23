@@ -19,7 +19,6 @@ public class EmployeeDaoImp implements EmployeeDao{
 
 		try(Connection conn = ErsUtil.getConnection()){
 
-			//sql for select all awaiting payments that belongs to current customer ID.
 			String sql = "SELECT * FROM ers_user WHERE ers_user_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -28,12 +27,7 @@ public class EmployeeDaoImp implements EmployeeDao{
 
 			//print the result from ResultSet.
 			ResultSet rs = ps.executeQuery();
-			
-//			if(rs == null) {
-//				return null;
-//			}
 
-			//add payment objects into a payment list.
 			while(rs.next()) {
 				u = new User(
 					rs.getInt("ers_user_id"),
@@ -125,7 +119,6 @@ public class EmployeeDaoImp implements EmployeeDao{
 
 		try(Connection conn = ErsUtil.getConnection()){
 
-			//sql for select all awaiting payments that belongs to current customer ID.
 			String sql = "SELECT * FROM ers_reimbursement WHERE reim_author = ? AND reim_status_id = '1' ORDER BY reim_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -135,7 +128,6 @@ public class EmployeeDaoImp implements EmployeeDao{
 			//print the result from ResultSet.
 			ResultSet rs = ps.executeQuery();
 
-			//add payment objects into a payment list.
 			while(rs.next()) {
 				Reimbursments.add(new Reimbursment(
 						rs.getInt("reim_id"),
@@ -166,17 +158,14 @@ public class EmployeeDaoImp implements EmployeeDao{
 
 		try(Connection conn = ErsUtil.getConnection()){
 
-			//sql for select all awaiting payments that belongs to current customer ID.
 			String sql = "SELECT * FROM ers_reimbursement WHERE reim_author = ? AND reim_status_id != '1' ORDER BY reim_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			//set user's id to select.
 			ps.setInt(1, userID);
 
-			//print the result from ResultSet.
 			ResultSet rs = ps.executeQuery();
 
-			//add payment objects into a payment list.
 			while(rs.next()) {
 				Reimbursments.add(new Reimbursment(
 						rs.getInt("reim_id"),
@@ -210,14 +199,11 @@ public class EmployeeDaoImp implements EmployeeDao{
 			//sql for select all awaiting payments that belongs to current customer ID.
 			String sql = "SELECT * FROM ers_reimbursement WHERE reim_author = ? ORDER BY reim_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
-
-			//set user's id to select.
+			
 			ps.setInt(1, userID);
 
-			//print the result from ResultSet.
 			ResultSet rs = ps.executeQuery();
 
-			//add payment objects into a payment list.
 			while(rs.next()) {
 				Reimbursments.add(new Reimbursment(
 						rs.getInt("reim_id"),

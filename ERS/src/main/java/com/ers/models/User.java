@@ -14,44 +14,6 @@ public class User {
 		
 	}
 
-	public User(String userName, String passWord) {
-		super();
-		this.userName = userName;
-		this.passWord = passWord;
-	}
-	
-	
-	//Constuctor for viewUsers method.
-	public User(int userID, String firstName, String lastName, int userRole) {
-		super();
-		this.userID = userID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userRole = userRole;
-	}
-
-	public User(String userName, String passWord, String firstName, String lastName, String salt) {
-		super();
-		this.userName = userName;
-		this.passWord = passWord;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.salt = salt;
-	}
-	
-	public User(int userID, String userName, String passWord, String firstName, String lastName, int userRole,
-			String salt, String email) {
-		super();
-		this.userID = userID;
-		this.userName = userName;
-		this.passWord = passWord;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userRole = userRole;
-		this.salt = salt;
-		this.email = email;
-	}
-
 	//contructor for viewInfo() dao.
 	public User(int userID, String firstName, String lastName, int userRole, String email) {
 		super();

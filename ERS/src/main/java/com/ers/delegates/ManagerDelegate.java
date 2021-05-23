@@ -55,7 +55,6 @@ public class ManagerDelegate {
 		
 		List<Reimbursment> pendingList = md.viewAllPending();
 		
-		//use jackson to parse the user object and add to request:
 		String pendingJson = null;
 		try {
 			pendingJson = om.writeValueAsString(pendingList);
@@ -72,7 +71,6 @@ public class ManagerDelegate {
 		
 		List<Reimbursment> resolvedList = md.viewAllResolved();
 		
-		//use jackson to parse the user object and add to request:
 		String resolvedJson = null;
 		try {
 			resolvedJson = om.writeValueAsString(resolvedList);
@@ -89,7 +87,6 @@ public class ManagerDelegate {
 		
 		List<User> employeeList = ud.viewAllEmployee();
 		
-		//use jackson to parse the user object and add to request:
 		String allEmployee = null;
 		try {
 			allEmployee = om.writeValueAsString(employeeList);
@@ -99,9 +96,9 @@ public class ManagerDelegate {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(allEmployee);
+		
 		response.setStatus(200);
-		response.setHeader("employeeList", allEmployee);//parsed user object
+		response.setHeader("employeeList", allEmployee);
 	}
 	
 	public void viewAllRquestById(HttpServletRequest request, HttpServletResponse response) {
@@ -110,7 +107,6 @@ public class ManagerDelegate {
 		
 		List<Reimbursment> requestList = md.viewAllRequestById(employeeID);
 		
-		//use jackson to parse the user object and add to request:
 		String requestJson = null;
 		try {
 			requestJson = om.writeValueAsString(requestList);

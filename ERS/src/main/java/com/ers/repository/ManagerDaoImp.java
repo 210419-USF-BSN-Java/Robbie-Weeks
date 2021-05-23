@@ -18,7 +18,6 @@ public class ManagerDaoImp implements ManagerDao{
 		
 		try(Connection conn = ErsUtil.getConnection();) {
 			
-			//update offer status column and return the current row for later use.
 			String setStatus = "UPDATE ers_reimbursement SET (reim_resolved, reim_resolver, reim_status_id) = (now(),?,?) where reim_id = ? RETURNING *;";
 			PreparedStatement ps = conn.prepareStatement(setStatus);
 			ps.setInt(1, managerID);
@@ -45,14 +44,12 @@ public class ManagerDaoImp implements ManagerDao{
 
 		try(Connection conn = ErsUtil.getConnection()){
 
-			//sql for select all awaiting payments that belongs to current customer ID.
 			String sql = "SELECT * FROM ers_reimbursement WHERE reim_status_id = '1' ORDER BY reim_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			//print the result from ResultSet.
 			ResultSet rs = ps.executeQuery();
 
-			//add payment objects into a payment list.
 			while(rs.next()) {
 				Reimbursments.add(new Reimbursment(
 						rs.getInt("reim_id"),
@@ -83,14 +80,12 @@ public class ManagerDaoImp implements ManagerDao{
 
 		try(Connection conn = ErsUtil.getConnection()){
 
-			//sql for select all awaiting payments that belongs to current customer ID.
 			String sql = "SELECT * FROM ers_reimbursement WHERE reim_status_id != '1'  ORDER BY reim_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			//print the result from ResultSet.
 			ResultSet rs = ps.executeQuery();
 
-			//add payment objects into a payment list.
 			while(rs.next()) {
 				Reimbursments.add(new Reimbursment(
 						rs.getInt("reim_id"),
@@ -121,7 +116,6 @@ public class ManagerDaoImp implements ManagerDao{
 
 		try(Connection conn = ErsUtil.getConnection()){
 
-			//sql for select all awaiting payments that belongs to current customer ID.
 			String sql = "SELECT * FROM ers_reimbursement WHERE reim_author = ?  ORDER BY reim_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
@@ -130,7 +124,6 @@ public class ManagerDaoImp implements ManagerDao{
 			//print the result from ResultSet.
 			ResultSet rs = ps.executeQuery();
 
-			//add payment objects into a payment list.
 			while(rs.next()) {
 				Reimbursments.add(new Reimbursment(
 						rs.getInt("reim_id"),

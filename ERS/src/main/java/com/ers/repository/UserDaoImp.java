@@ -51,20 +51,17 @@ public class UserDaoImp implements UserDao{
 	@Override
 	public User getUserInfo(String userName) {
 		User u = new User();
-		//Check if the user's credential matches in the database record.
+
 		try(Connection conn = ErsUtil.getConnection()){
-			
-			//select user information from database if the credential matches the record.
+
 			String sql = "SELECT ers_user_id, first_name, last_name, user_email, user_role FROM ers_user where ers_username = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			//set user's login credential to verify
 			ps.setString(1, userName);
 
 			//add result into resultset 
 			ResultSet rs = ps.executeQuery();
 
-			//pass the user information from resultset to an User object.
 			if(rs != null) {
 				while(rs.next()) { 
 					u.setUserID(rs.getInt("ers_user_id"));
@@ -84,40 +81,6 @@ public class UserDaoImp implements UserDao{
 		
 		return u;
 		
-	}
-	
-	@Override
-	public boolean checkUserName(String userName) {
-		
-		// create a list of existing usernames.
-		Set<String> userNames = new HashSet<>();  
-
-
-		//Check if application's username is already existed in database
-		try(Connection conn = ErsUtil.getConnection()){
-
-			//select all existing usernames.
-			String sql = "SELECT user_name FROM shop_user";
-			PreparedStatement ps = conn.prepareStatement(sql);
-
-			//add all usernames into resultset 
-			ResultSet rs = ps.executeQuery();
-
-			//pass all username from resultset to userNames List
-			while(rs.next()) { 
-				userNames.add(rs.getString("user_name"));
-			}
-
-		} catch (SQLException e) {
-					
-			e.printStackTrace();
-		}
-
-		if(userNames.contains(userName)) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 	
 	@Override
