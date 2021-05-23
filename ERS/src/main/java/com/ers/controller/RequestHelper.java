@@ -18,9 +18,7 @@ public class RequestHelper {
 		EmployeeDelegate ede = new EmployeeDelegate(request);
 		ManagerDelegate mde = new ManagerDelegate(request);
 		
-		System.out.println("inside request helper: doGet");
 		String path = request.getServletPath();
-		System.out.println(path);
 		
 		switch(path) {
 		case "/viewPending":
@@ -54,9 +52,7 @@ public class RequestHelper {
 		EmployeeDelegate ede = new EmployeeDelegate(request);
 		ManagerDelegate mde = new ManagerDelegate(request);
 		
-		System.out.println("inside request helper: doPost");
 		String path = request.getServletPath();
-		System.out.println(path);
 		
 		switch(path) {
 		case "/login":

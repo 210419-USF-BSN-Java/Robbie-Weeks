@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.RequestFacade;
 import org.apache.catalina.connector.ResponseFacade;
-import org.apache.catalina.servlets.DefaultServlet;
 import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,9 +17,7 @@ import com.ers.delegates.EmployeeDelegate;
 import com.ers.models.Reimbursment;
 import com.ers.repository.EmployeeDao;
 import com.ers.repository.EmployeeDaoImp;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class EmployeeDegateTest {
 	
@@ -36,8 +33,6 @@ public class EmployeeDegateTest {
 	
 	@InjectMocks
 	static EmployeeDelegate ede;
-	
-	ObjectMapper mapper = new ObjectMapper();
 	
 	@BeforeClass
 	public static void setUp() {
@@ -60,38 +55,35 @@ public class EmployeeDegateTest {
 //	@Test
 //	public void addReimTest() throws JsonMappingException, JsonProcessingException {
 //		//fake reimbursement request for addReim().
-//		String reimRequest = "{\"amount\" : \"500\", \"description\" : \"flight\", \"typeID\" : \"1\"}";
-//		Mockito.when(request.getHeader("reimRequest")).thenReturn(reimRequest);
-//		
-//		Reimbursment reim = mapper.readValue(reimRequest, Reimbursment.class); 
-//		Mockito.when(ed.makeReim(reim)).thenReturn(true);
-//		
-//		//ede.addReim(request, response);
+//		Mockito.when(request.getParameter("amount")).thenReturn("200");
+//		Mockito.when(request.getParameter("type")).thenReturn("3");
+//		Mockito.when(request.getParameter("description")).thenReturn("I am a Mocking bird");
+//
+//		ede.addReim(request, response);
 //		
 //	}//passed
-	
-	@Test
-	public void viewPendingTest() {
-		
-		ede.viewPending(request, response);
-		
-	}
-	
+//	
+//	@Test
+//	public void viewPendingTest() {
+//		
+//		ede.viewPending(request, response);
+//		
+//	}//passed
+//	
 //	@Test
 //	public void viewSolvedTest() {
 //		
 //		ede.viewSolved(request, response);
 //		
-//	}
+//	}passed
 //	
 //	@Test
 //	public void viewInfoTest() {
 //		
-//		
 //		ede.viewInfo(request, response);
 //		
-//	}
-	
+//	}passed
+//	
 //	@Test
 //	public void updateInfoTest() {
 //		
@@ -99,11 +91,11 @@ public class EmployeeDegateTest {
 //		Mockito.when(request.getParameter("firstName")).thenReturn("Robbie");
 //		Mockito.when(request.getParameter("lastName")).thenReturn("Weeks");
 //		Mockito.when(request.getParameter("email")).thenReturn("123456@gmail.com");
-//		//Mockito.when(ed.updateInfo(u)).thenReturn(true);
+//		Mockito.when(ed.updateInfo(u)).thenReturn(true);
 //		
 //		ede.updateInfo(request, response);
 //		
-//	}
+//	}passed
 	
 	
 }

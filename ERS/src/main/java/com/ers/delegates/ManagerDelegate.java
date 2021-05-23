@@ -105,12 +105,8 @@ public class ManagerDelegate {
 	}
 	
 	public void viewAllRquestById(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("employeeID");
-		System.out.println(id);
-		System.out.println(managerID);
+		
 		int employeeID = Integer.parseInt(request.getHeader("employeeID"));
-		//int employeeID = Integer.parseInt(request.getParameter("employeeID"));
-		//System.out.println(employeeID);
 		
 		List<Reimbursment> requestList = md.viewAllRequestById(employeeID);
 		
