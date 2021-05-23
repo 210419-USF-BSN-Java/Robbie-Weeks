@@ -35,7 +35,7 @@ document.getElementById("back").addEventListener("click", back);
 function requestAction(){
 	let reimID = document.getElementById("reimID").value;
 	let action = document.getElementById("action").value;
-	
+	console.log(action);
 	let token = localStorage.getItem("token")
 	
 	let xhr = new XMLHttpRequest();
