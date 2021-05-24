@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: delegatesTest.ManagerDelegateTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.648 s - in delegatesTest.ManagerDelegateTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.627 s - in delegatesTest.ManagerDelegateTest
