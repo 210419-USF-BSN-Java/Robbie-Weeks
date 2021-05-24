@@ -1,3 +1,20 @@
+let token = localStorage.getItem("token");
+
+if(!token){
+	window.location.href="http://localhost:8080/ERS/";
+} else {
+	
+	let userInfo = token.split(":");
+	if(userInfo[2] == 2){
+		
+		let welcome = document.getElementById("welcome");
+		welcome.innerText="Welcome to the ERS, " + userInfo[1];
+
+	} else if(userInfo[2] == 1){
+		window.location.href="http://localhost:8080/ERS/employee.html";
+	}
+}
+
 document.getElementById("viewAllById").addEventListener("click", viewAllById);
 document.getElementById("viewPending").addEventListener("click", viewPending);
 document.getElementById("viewResolved").addEventListener("click", viewResolved);

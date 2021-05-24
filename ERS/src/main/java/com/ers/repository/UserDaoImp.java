@@ -17,7 +17,7 @@ public class UserDaoImp implements UserDao{
 	
 	public String[] getHashAndSalt(String userName) {
 		String[] hashAndSalt = new String[2];
-		System.out.println("Inside UserDaoImp");
+
 		try(Connection conn = ErsUtil.getConnection()){
 			
 			String getHash = "SELECT ers_password, user_salt FROM ers_user WHERE ers_username = ?";
@@ -28,13 +28,12 @@ public class UserDaoImp implements UserDao{
 			
 			//add result into Resultset.
 			ResultSet rs = ps.executeQuery();
-			System.out.println("Going to Set hashAndSalt");
+
 			if (rs != null) {
 				while (rs.next()) {
 					//first index stores the hashed password, second index stores the user salt.
 					hashAndSalt[0] = rs.getString("ers_password");
 					hashAndSalt[1] = rs.getString("user_salt");
-					System.out.println("Setting hashAndSalt");
 				}
 			} else {
 				System.out.println("fail to set");

@@ -9,9 +9,9 @@
 <body style=
 	"background: coral;"
 >
-    <h1>Pending reimbursement requests: </h1>
+    <h1 style="display:flex;justify-content:center">Pending reimbursement requests: </h1>
     <br>
-	<div style="display:flex;justify-content:left">
+	<div style="display:flex;justify-content:center">
 
         <div id="requestAction">
             
@@ -19,8 +19,8 @@
             <input type="number" id = "reimID" class="form-control mb-3">
             <label>Select a decision: </label>
             <select id = "action" class="form-control mb-3" >
-       			<option value = "1"> Approve </option>
-        		<option value = "2"> Deny </option>
+       			<option value = "2"> Approve </option>
+        		<option value = "3"> Deny </option>
    			</select>
             
             <button id = "resolve"class="btn-primary" type="submit">Submit</button>

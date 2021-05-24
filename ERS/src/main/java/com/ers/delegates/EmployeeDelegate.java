@@ -81,7 +81,7 @@ public class EmployeeDelegate {
 	
 	public void viewSolved(HttpServletRequest request, HttpServletResponse response) {
 			
-		List<Reimbursment> resolvedList = ed.viewPending(userID);
+		List<Reimbursment> resolvedList = ed.viewResolved(userID);
 		
 		String resolvedJson = null;
 		try {

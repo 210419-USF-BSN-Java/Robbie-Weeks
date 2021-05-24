@@ -33,6 +33,6 @@ document.getElementById("back").addEventListener("click", back);
 
 function back(){
 
-    window.location.href="http://localhost:8080/ERS/manager.html"
+    window.location.href="http://localhost:8080/ERS/employee.html"
 
 }

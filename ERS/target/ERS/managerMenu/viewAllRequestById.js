@@ -1,9 +1,11 @@
-viewResolved();
 
-function viewResolved(){
+document.getElementById("check").addEventListener("click", viewRequest);
+
+function viewRequest(){
 	let token = localStorage.getItem("token")
 	let xhr = new XMLHttpRequest();
 	let url = "http://localhost:8080/ERS/viewAllRquestById";
+	let employeeID = document.getElementById("employeeID").value;
 	xhr.open("GET", url);
 	
 	xhr.onreadystatechange = function(){
@@ -26,6 +28,7 @@ function viewResolved(){
 	
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.setRequestHeader("Authorization",token);
+	xhr.setRequestHeader("employeeID",employeeID);
 	xhr.send();
 }
 
