@@ -1,0 +1,47 @@
+CREATE TABLE public.ers_reimbursement (
+	reim_id serial NOT NULL,
+	reim_amount float8 NULL,
+	reim_submitted timestamp(0) NOT NULL DEFAULT now(),
+	reim_resolved timestamp(0) NULL,
+	reim_description varchar NULL,
+	reim_receipt varchar NULL,
+	reim_author int4 NULL,
+	reim_resolver int4 NULL,
+	reim_status_id int4 NULL,
+	reim_type_id int4 NULL,
+	CONSTRAINT ers_reimbursement_pkey PRIMARY KEY (reim_id)
+);
+
+
+CREATE TABLE public.ers_reimbursement_status (
+	reim_status_id int4 NOT NULL DEFAULT nextval('ers_reimbursement_type_reim_status_id_seq'::regclass),
+	reim_status varchar(30) NULL,
+	CONSTRAINT ers_reimbursement_type_pkey PRIMARY KEY (reim_status_id)
+);
+
+
+CREATE TABLE public.ers_reimbursement_type (
+	reim_type_id serial NOT NULL,
+	reim_type varchar(30) NULL,
+	CONSTRAINT ers_reimbursement_type_pkey1 PRIMARY KEY (reim_type_id)
+);
+
+
+CREATE TABLE public.ers_user (
+	ers_user_id serial NOT NULL,
+	ers_username varchar(50) NULL,
+	ers_password varchar(150) NULL,
+	first_name varchar(50) NULL,
+	last_name varchar(50) NULL,
+	user_email varchar(150) NULL,
+	user_role int4 NULL,
+	user_salt varchar(150) NULL,
+	CONSTRAINT ers_user_pkey PRIMARY KEY (ers_user_id)
+);
+
+
+CREATE TABLE public.ers_user_roles (
+	ers_role_id serial NOT NULL,
+	user_role varchar(30) NULL,
+	CONSTRAINT ers_user_roles_pkey PRIMARY KEY (ers_role_id)
+);
