@@ -5,6 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import com.ers.models.Reimbursment;
 import com.ers.models.User;
 import com.ers.repository.EmployeeDao;
@@ -15,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class EmployeeDelegate {
-	
+	private static Logger log = LogManager.getLogger(EmployeeDelegate.class);
 	private EmployeeDao ed = new EmployeeDaoImp();
 	ObjectMapper mapper = new ObjectMapper();
 	
@@ -60,12 +63,13 @@ public class EmployeeDelegate {
 		Reimbursment reim = new Reimbursment(amount, description, userID, 1, typeID);
 	
 		ed.makeReim(reim);
+		log.info("Employee ID: " + userID + " has added a reimbursement request for" + amount + " dollars.");
 	}
 	
 	public void viewPending(HttpServletRequest request, HttpServletResponse response) {
 			
 		List<Reimbursment> pendingList = ed.viewPending(userID);
-		System.out.println(pendingList);
+		
 		String pendingJson = null;
 		try {
 			pendingJson = mapper.writeValueAsString(pendingList);
@@ -82,7 +86,7 @@ public class EmployeeDelegate {
 	public void viewSolved(HttpServletRequest request, HttpServletResponse response) {
 			
 		List<Reimbursment> resolvedList = ed.viewResolved(userID);
-		System.out.println(resolvedList);
+		
 		String resolvedJson = null;
 		try {
 			resolvedJson = mapper.writeValueAsString(resolvedList);
@@ -120,12 +124,12 @@ public class EmployeeDelegate {
 		String email = request.getParameter("email");
 		
 		User u = new User(userID, firstName, lastName, email);
-		System.out.println(u);
+		
 		boolean success = ed.updateInfo(u);
 		
 		if(success == true) {
 			response.setStatus(200);
 		}
-		
+		log.info("Employee ID: " + userID + " has updated the personal information.");
 	}
 }

@@ -33,7 +33,7 @@ function viewPending(){
 
 function viewSolved(){
 
-    window.location.href="http://localhost:8080/ERS/employeeMenu/viewSolved.html";
+    window.location.href="http://localhost:8080/ERS/employeeMenu/ViewSolved.html";
 }
 
 function viewInfo(){

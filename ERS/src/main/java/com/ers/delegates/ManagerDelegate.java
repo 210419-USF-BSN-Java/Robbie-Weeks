@@ -5,6 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import com.ers.models.Reimbursment;
 import com.ers.models.User;
 import com.ers.repository.ManagerDao;
@@ -16,7 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ManagerDelegate {
-	
+	private static Logger log = LogManager.getLogger(ManagerDelegate.class);
 	private ManagerDao md = new ManagerDaoImp();
 	private UserDao ud = new UserDaoImp();
 	private ObjectMapper om = new ObjectMapper();
@@ -48,6 +51,7 @@ public class ManagerDelegate {
 			response.setStatus(200);
 		}
 		
+		log.info("Manager ID: " + managerID + " has resolved the reimbursement for request ID: " + reimID + ".");
 	}
 
 	

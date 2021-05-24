@@ -148,7 +148,7 @@ public class EmployeeDaoImp implements EmployeeDao{
 			
 			e.printStackTrace();
 		}	
-		System.out.println(Reimbursments);
+		
 		return Reimbursments;
 	}
 
@@ -186,7 +186,7 @@ public class EmployeeDaoImp implements EmployeeDao{
 			
 			e.printStackTrace();
 		}	
-		System.out.println(Reimbursments);
+		
 		return Reimbursments;
 	}
 
