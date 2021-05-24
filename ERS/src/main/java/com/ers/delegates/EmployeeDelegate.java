@@ -65,7 +65,7 @@ public class EmployeeDelegate {
 	public void viewPending(HttpServletRequest request, HttpServletResponse response) {
 			
 		List<Reimbursment> pendingList = ed.viewPending(userID);
-		
+		System.out.println(pendingList);
 		String pendingJson = null;
 		try {
 			pendingJson = mapper.writeValueAsString(pendingList);
@@ -82,7 +82,7 @@ public class EmployeeDelegate {
 	public void viewSolved(HttpServletRequest request, HttpServletResponse response) {
 			
 		List<Reimbursment> resolvedList = ed.viewResolved(userID);
-		
+		System.out.println(resolvedList);
 		String resolvedJson = null;
 		try {
 			resolvedJson = mapper.writeValueAsString(resolvedList);
