@@ -37,18 +37,13 @@ Java, JavaScript, HTML, CSS, JDBC, AWS RDS, PostgreSQL.
 ## Getting Started
 
 ### Cloning a repository using the command line
-1. Copy the corresponding codes:
-
-  https://github.com/210419-USF-BSN-Java/Robbie-Weeks.git
-
-2. Open Git Bash.
-3. Change the current working directory to the location where you want the cloned directory.
-4. Type git clone, and then paste the URL you copied earlier.
+1. Open a terminal.
+2. Change the current working directory to the location where you want the cloned directory.
+3. Paste the follow line of code inside the terminal and press Enter.
 
   git clone https://github.com/210419-USF-BSN-Java/Robbie-Weeks.git
- 
-5. Press Enter to create your local clone.
+
 
 ## All the code required to get started
-1. Inside an IDE, run the project on your a server.
+1. Install an IDE, run the project on your a server.
 2. Enter: localhost: 8080/ERS/ to visit the login page for ERS system. 
